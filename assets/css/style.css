@@ -86,7 +86,7 @@ h1, h2, h3 {
     width: 32px;
     height: 32px;
     margin: 0 auto 2.75rem;
-    background: url('/assets/images/logo.svg') no-repeat center / contain;
+    background: url(../assets/images/logo.svg) no-repeat center / contain;
     /* opacity: 0.75; */
 }
 
