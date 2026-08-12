@@ -40,6 +40,32 @@ body {
     padding: 0;
     line-height: 1.9;
     -webkit-font-smoothing: antialiased;
+    /* position: relative; */
+}
+
+body::after {
+    content: ""; /* 擬似要素を表示するために必須 */
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    
+    /* 正しい背景画像の設定方法 */
+    background-image: url(../images/hero.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    /* タッチ操作やクリックを背後のコンテンツに通り抜けさせる指定 */
+    pointer-events: none;
+    
+    /* 他のコンテンツの後ろに配置したい場合は -1（一番上なら20でOK） */
+    z-index: -1;
+}
+
+section {
+    background-color: var(--color-paper);
 }
 
 a {
@@ -259,6 +285,7 @@ h1, h2, h3 {
     color: var(--color-moss-deep);
 }
 
+/* 予約ボタン */
 .site-nav ul {
     display: flex;
     align-items: center;
@@ -305,6 +332,9 @@ h1, h2, h3 {
 .top .site-nav .nav-btn {
     color: var(--color-white);
     background-color: rgba(0, 0, 0, 0.25);
+}
+.site-nav.is-open .nav-btn {
+    background-color: transparent;
 }
 .site-nav .nav-btn::before {
     content: "";
@@ -508,13 +538,12 @@ h1, h2, h3 {
 }
 
 .grid-2 img {
-    border: 10px solid var(--color-white);
-    box-shadow: var(--shadow-soft);
-    border-radius: 1px;
+    box-shadow: 0 1px 5px var(--color-border);
+    border-radius: 2px;
 }
 
 .grid-2 img:nth-child(2) {
-    transform: translateY(26px);
+    /* transform: translateY(26px); */
 }
 
 .grid-2 h3 {
@@ -529,15 +558,85 @@ h1, h2, h3 {
     text-align: left;
 }
 
+/*  */
+.slideshow-container {
+  max-width: 800px;
+  position: relative;
+  margin: 0 auto 24px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.slides-wrapper {
+  display: flex;
+  overflow-x: auto;
+  cursor: grab;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.slides-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.slides-wrapper:active {
+  cursor: grabbing;
+}
+
+.slide {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 400px;
+  user-select: none;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.dots-container {
+  text-align: center;
+  position: absolute;
+  bottom: 12px;
+  width: 100%;
+  pointer-events: none;
+}
+
+.dot {
+  height: 8px;
+  width: 8px;
+  margin: 0 4px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.dot.active {
+  background-color: #ffffff;
+  width: 20px;
+  border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+  .slide {
+    height: 250px;
+  }
+}
+
 /* 店舗情報カード — 神社の授与所の木札を思わせる、上辺のみのアクセント */
 .info-card {
     background-color: var(--color-white);
     max-width: 600px;
-    margin: 0 auto 30px;
+    margin: 0 auto;
     padding: 34px 36px;
     text-align: left;
-    border-top: 3px solid var(--color-hagi);
-    box-shadow: var(--shadow-soft);
+    /* border-top: 3px solid var(--color-hagi); */
+    box-shadow: 0 1px px var(--color-border);
+    border-radius: 12px;
 }
 
 .info-card p {
@@ -550,12 +649,34 @@ h1, h2, h3 {
     margin-bottom: 0;
 }
 
+.noren {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin: 0 auto 24px;
+    gap: 15px;
+}
+.noren span {
+    /* text-align: center; */
+    margin-top: -3px;
+    line-height: 1.05em;
+}
+.noren img {
+    width: 32px;
+    height: 32px;
+}
+
 .map-embed {
-    max-width: 600px;
+    /* max-width: 672px; */
+    width: 100%;
+    padding: 0;
     margin: 0 auto;
+    margin-bottom: 24px;
     height: 350px;
-    box-shadow: var(--shadow-soft);
+    box-shadow: 0 1px 5px var(--color-border);
     overflow: hidden;
+    border-radius: 6px;
 }
 
 .map-embed iframe {
