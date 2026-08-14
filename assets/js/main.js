@@ -295,3 +295,227 @@ window.addEventListener('load', () => {
 initPosition();
 startAutoPlay();
 });
+
+// ==========================================
+// .hero 全体をピン留め対象（trigger）にして pin: true を設定し、end: "+=1000"（1000px分スクロールするまで）と指定
+// ==========================================
+document.addEventListener('DOMContentLoaded', () => {
+  gsap.registerPlugin(ScrollTrigger);
+
+  
+
+  // ① hero全体を1000px分固定しながら、子要素をアニメーションさせるタイムライン
+  const heroTl = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".hero",       // 固定する要素
+      start: "top top",       // heroの上端が画面の上端に達したらスタート
+      end: "+=2000",          // 1000pxスクロールする間固定（ここで固定距離を調整）
+      pin: true,              // 画面に固定する
+      scrub: true,            // スクロール量に動きを完全連動させる
+      // markers: true,       // 開発中に位置調整したい場合はコメントアウトを外す
+    }
+  });
+
+  
+
+
+  // ② 1000px動く間に「動かしたい子要素」のアニメーションを登録
+  
+  // 例1: .hero-tag を右から左へ移動させる
+//   heroTl.to(".hero-tag", {
+//     x: -300,
+//     opacity: 0.5,
+//     ease: "none"
+//   }, 0); 
+  // 最後の 0 はアニメーションの開始タイミング（同時に動かす）
+  heroTl.fromTo(".hero-logo", 
+  {
+    y: 0,       // 初期位置（右に100pxずれた場所からスタート）
+    scale: 1,
+    opacity: 1
+  }, 
+  {
+    y: -1000,      // 最終位置（左に300px動いた場所へ）
+    scale: 1,
+    opacity: 0,
+    ease: "none",
+    duration: 0.1  // 1000px のうち「40%（＝400pxスクロール時点）」で完了させる
+  }, 
+  0.0
+);
+
+  heroTl.fromTo(".hero-tag", 
+  {
+    x: 100,       // 初期位置（右に100pxずれた場所からスタート）
+    opacity: 0
+  }, 
+  {
+    x: 0,      // 最終位置（左に300px動いた場所へ）
+    opacity: 1,
+    ease: "none",
+    duration: 0.4  // 1000px のうち「40%（＝400pxスクロール時点）」で完了させる
+  }, 
+  0
+);
+
+  // 例2: テキスト（.hero-content）を下にスライドさせながらフェードアウトさせる
+  heroTl.fromTo(".hero-content",
+    {
+    y: 200,
+    opacity: 0,
+    ease: "none"
+  }, 
+  {
+    y: 0,
+    opacity: 1,
+    ease: "none",
+    duration: 0.4
+  }, 0);
+
+//   heroTl.fromTo(".hero-logo", 
+//     { 
+//         // transformOrigin: "left center",
+//         scale: 1, 
+//         opacity: 1 ,
+//         y: 40
+//     }, 
+//     { 
+//         scale: 0.1, 
+//         opacity: 0, 
+//         y: 100,
+//         ease: "none", 
+//         duration: 0.2 
+//     }, 
+//     0.1 
+//   );
+
+  // 例3: 動かしたい要素（.boxなど）があれば自由に追加可能
+  // heroTl.to(".box", { scale: 1.5, ease: "none" }, 0);
+
+  
+  // setTimeout でほんのわずか（50ms）遅らせて「最初の一度だけ」クラスを付与する
+//   setTimeout(() => {
+//     const heroLogo = document.querySelector('.hero-logo');
+//     if (heroLogo) {
+//       heroLogo.classList.add('is-animated');
+//     }
+//   }, 50);
+const storyTl = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".story-section",       // 固定する要素
+      start: "top top",       // heroの上端が画面の上端に達したらスタート
+      end: "+=200",          // 1000pxスクロールする間固定（ここで固定距離を調整）
+      pin: false,              // 画面に固定する
+      scrub: true,            // スクロール量に動きを完全連動させる
+      // markers: true,       // 開発中に位置調整したい場合はコメントアウトを外す
+    }
+  });
+
+  storyTl.fromTo(".grid-2 .story-img-wrapper img",
+    {
+    yPercent: 5,
+    scale: 1.1,
+    ease: "none"
+  }, 
+  {
+    yPercent: -5,
+    scale: 1.1,
+    ease: "none",
+    duration: 0.4
+  }, 0);
+
+     
+const menuTl = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".menu-section",       // 固定する要素
+      start: "top top",       // heroの上端が画面の上端に達したらスタート
+      end: "+=200",          // 1000pxスクロールする間固定（ここで固定距離を調整）
+      pin: false,              // 画面に固定する
+      scrub: true,            // スクロール量に動きを完全連動させる
+      // markers: true,       // 開発中に位置調整したい場合はコメントアウトを外す
+    }
+  });
+
+  menuTl.fromTo(".grid-2 .menu-img-wrapper img",
+    {
+    yPercent: 5,
+    scale: 1.1,
+    ease: "none"
+  }, 
+  {
+    yPercent: -5,
+    scale: 1.1,
+    ease: "none",
+    duration: 0.4
+  }, 0);
+
+  // 2. マウスホバー処理（scale のアニメーション）
+  const wrappers = document.querySelectorAll('.story-img-wrapper, .menu-img-wrapper');
+
+  wrappers.forEach((wrapper) => {
+    const img = wrapper.querySelector('img');
+    if (!img) return;
+
+    // 初期状態の scale を 1.1 に設定
+    gsap.set(img, { scale: 1.1 });
+
+    // ホバーした時：scale 1.5 へ拡大
+    wrapper.addEventListener('mouseenter', () => {
+      gsap.to(img, {
+        scale: 1.2,
+        duration: 0.6,
+        ease: 'power2.out',
+        overwrite: 'auto' // スクロールのtransformとscale指定がぶつかるのを自動調整
+      });
+    });
+
+    // ホバーが外れた時：元の scale 1.1 へ戻す
+    wrapper.addEventListener('mouseleave', () => {
+      gsap.to(img, {
+        scale: 1.1,
+        duration: 0.6,
+        ease: 'power2.out',
+        overwrite: 'auto'
+      });
+    });
+  });
+});
+
+
+// ==========================================
+// logoアニメーションの発火管理
+// ==========================================
+// document.addEventListener('DOMContentLoaded', () => {
+//   const heroLogo = document.querySelector('.hero-logo');
+
+//   document.fonts.ready.then(() => {
+//     requestAnimationFrame(() => {
+//       if (heroLogo && !heroLogo.classList.contains('is-animated')) {
+//         heroLogo.classList.add('is-animated');
+//       }
+//     });
+//   });
+// });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const heroLogo = document.querySelector('.hero-logo');
+
+  document.fonts.ready.then(() => {
+    requestAnimationFrame(() => {
+      if (heroLogo && !heroLogo.classList.contains('is-animated')) {
+        heroLogo.classList.add('is-animated');
+
+        // 左（または右）の要素のアニメーション完了を検知
+        const animElement = heroLogo.querySelector('.logo-anim-left');
+        if (animElement) {
+          animElement.addEventListener('animationend', (e) => {
+            // expandX アニメーションが終わった時だけ処理をする
+            if (e.animationName === 'expandX') {
+              heroLogo.classList.add('is-logo-animated');
+            }
+          }, { once: true }); // 1回だけ発火するように制限
+        }
+      }
+    });
+  });
+});
