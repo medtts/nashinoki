@@ -10,6 +10,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600&family=Zen+Maru+Gothic:wght@400;500&family=Cormorant:ital@1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+    <script src="assets/js/main.js" defer></script>
 </head>
 <body>
 
@@ -37,6 +41,15 @@
     <main>
         <!-- 1. HERO -->
         <section class="hero">
+            <div class="hero-logo">
+                <div class="hero-logo-wrap">
+                    <p class="logo-anim-left">C</p><img src="assets/images/logo.svg" alt=""><p class="logo-anim-right">FFEE BASE</p>
+                </div>
+                <div class="hero-logo-wrap"><p>×</p></div>
+                <div class="hero-logo-wrap">
+                    <p class="logo-anim-left">NASHIN</p><img src="assets/images/kamon.svg" alt=""><p class="logo-anim-right">KI</p>
+                </div>
+            </div>
             <span class="hero-tag">京都御所東 · 梨木神社境内</span>
             <div class="hero-content">
                 <h1>心潤す、京の名水。</h1>
@@ -44,6 +57,9 @@
                 <a href="#concept" class="btn-accent">物語を読み進める</a>
             </div>
         </section>
+
+        <!-- 背景 -->
+        <div class="top-our">
 
         <!-- 2. CONCEPT -->
         <section class="content-section" id="concept">
@@ -58,12 +74,12 @@
         </section>
 
         <!-- 3. STORY OF WATER & ARCHITECTURE -->
-        <section class="content-section section-alt">
+        <section class="story-section content-section section-alt">
             <h2 class="section-title">名水と建築の背景</h2>
             <p class="section-subtitle">STORY OF WATER & ARCHITECTURE</p>
             <div class="grid-2">
-                <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80" alt="染井の水">
-                <div>
+                <div class="story-img-wrapper"><img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80" alt="染井の水"></div>
+                <div class="grid-text">
                     <h3>京都三名水「染井の水」と旧春興殿</h3>
                     <p>唯一現存する名水「染井の水」のまろやかな口あたりと、大正期に宮中より移築された歴史的建築「旧春興殿」の温もり。その深い背景を紐解きます。</p>
                     <a href="story/" class="btn-accent">STORYページで詳しく見る</a>
@@ -82,32 +98,15 @@
             <a href="https://ec.travel.jr-central.co.jp/tp/optionalFacilities/6332M02/plans?lang=ja" target="_blank" rel="noopener" class="btn-accent">特別室コーヒーコースを予約する</a>
         </section>
 
-        <!-- 5. MENU -->
-        <section class="content-section section-alt">
-            <h2 class="section-title">すっと身体にしみ入る、透明な一杯。</h2>
-            <p class="section-subtitle">MENU</p>
-            <p>名水の個性を活かした水出しコーヒーや、その日の気分に寄り添うシングルオリジンのドリップ。今のあなたに合う一杯を見つける「豆診断」もご用意しています。</p>
-            <div class="grid-2">
-            <!-- RECOMMENDED -->
-            <div class="menu-section" style="padding: 0;">
-                <h2 class="menu-category">RECOMMENDED</h2>
-                <ul class="menu-list">
-                    <li><span>水出しコーヒー ブレンド (アイスのみ)</span><span>660円</span></li>
-                    <li><span>＋栗まんじゅうセット</span><span>1,030円</span></li>
-                    <a href="menu/" class="btn-accent" style="margin-top: 20px;">すべてのメニューを見る</a>
-                </ul>
-            </div>
-            <div>
-                <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80" alt="">
-            </div>
-            </div>
-        </section>
+        <!-- /top-our -->
+        </div>
+        <div class="background-gallery">
 
-        <!-- 6. SPACE & ATMOSPHERE -->
+        <!-- 5. SPACE & ATMOSPHERE -->
         <section class="content-section">
-            <h2 class="section-title">境内の静けさに身を委ねて</h2>
-            <p class="section-subtitle">SPACE & ATMOSPHERE</p>
-            <p style="margin-bottom: 40px;">いつでもここでは、あなたを急かすものはありません。木漏れ日の差す縁側や、風に揺れる境内の緑とともに、ただ心地よい時間をお過ごしください。</p>
+            <h2 class="section-title white">境内の静けさに身を委ねて</h2>
+            <p class="section-subtitle white">SPACE & ATMOSPHERE</p>
+            <p class="white" style="margin-bottom: 40px;">いつでもここでは、あなたを急かすものはありません。木漏れ日の差す縁側や、風に揺れる境内の緑とともに、ただ心地よい時間をお過ごしください。</p>
             <div class="slideshow-container">
                 <div class="slides-wrapper" id="slidesWrapper">
                     <!-- 【クローン】最後の画像 -->
@@ -141,29 +140,166 @@
             </div>
         </section>
 
+        </div>
+        <!-- 背景 -->
+        <div class="top-our">
+
+        <!-- 6. MENU -->
+        <section class="menu-section content-section section-alt">
+            <h2 class="section-title">すっと身体にしみ入る、透明な一杯。</h2>
+            <p class="section-subtitle">MENU</p>
+            <p>名水の個性を活かした水出しコーヒーや、その日の気分に寄り添うシングルオリジンのドリップ。今のあなたに合う一杯を見つける「豆診断」もご用意しています。</p>
+            <div class="grid-2">
+                <!-- RECOMMENDED -->
+                <div class="menu-wrap grid-text" style="padding: 0;">
+                    <h2 class="menu-category">RECOMMENDED</h2>
+                    <ul class="menu-list">
+                        <li><span>水出しコーヒー ブレンド (アイスのみ)</span><span>660円</span></li>
+                        <li><span>＋栗まんじゅうセット</span><span>1,030円</span></li>
+                        <a href="menu/" class="btn-accent" style="margin-top: 20px;">すべてのメニューを見る</a>
+                    </ul>
+                </div>
+            
+                    <div class="menu-img-wrapper"><img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80" alt=""></div>
+             
+            </div>
+        </section>
+
+        <!-- /top-our -->
+        </div>
+
         <!-- パララックス効果 -->
-        <div style="height: 600px; background-color: transparent;"></div>
-        <!-- <div style="position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 10vh;
-  z-index: -20;
-  transform-origin: 0 0; 
-  transform: translateZ(-10px);"><img src="assets/images/logo.svg" alt=""></div> -->
+        <section class="parallax-section">
+            <div style="height: 60vh; background-color: transparent;"></div>
+            <div class="parallax-mid-group">
+            <div class="mid-item item-1"><img src="assets/images/logo.svg" alt=""></div>
+            <div class="mid-item item-2"><img src="assets/images/kamon.svg" alt=""></div>
+        </div>
+        </section>
+        <style>
+            .parallax-section {
+                position: relative;
+                max-width: 1000px;
+                margin: 0 auto;
+                background-color: transparent;
+            }
+            .parallax-mid-group {
+                position: absolute; /* fixedにしてJSのtransformで移動を制御する */
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                z-index: -1; /* 遠景と近景の間 */
+                pointer-events: none; /* マスクなどでクリックを阻害しないようにする */
+                will-change: transform; /* パフォーマンス向上 */
+                overflow-x: hidden;
+                }
+
+                /* 中景の中に配置する要素のスタイル */
+                .mid-item {
+                position: absolute;
+                background: rgba(255, 255, 255, 0.25);
+                backdrop-filter: blur(8px);
+                padding: 20px;
+                border-radius: 12px;
+                /* color: #fff; */
+                }
+
+                .item-1 {
+                    width: 20%;
+                    top: 30%;
+                    left: 0%;
+                }
+
+                .item-2 {
+                    width: 20%;
+                    top: 60%;
+                    right: 0%;
+                }
+        </style>
+        
+        <script>
+            // window.addEventListener('scroll', () => {
+            // const scrolled = window.scrollY;
+
+            // // 開始させたいスクロール位置（例: 500px スクロールしたら動かし始める）
+            // const startPos = 4200; 
+
+            // const midGroup = document.querySelector('.parallax-mid-group');
+
+            // if (midGroup) {
+            //     if (scrolled >= startPos) {
+            //     // 500pxを超えたら、その位置からの差分だけスクロールさせる
+            //     const relativeScroll = scrolled - startPos;
+            //     midGroup.style.transform = `translateY(-${relativeScroll * 0.4}px)`;
+            //     } else {
+            //     // 500px未満の時は移動させない（初期位置をキープ）
+            //     midGroup.style.transform = `translateY(0px)`;
+            //     }
+            // }
+            // });
+            window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
+            const section = document.querySelector('.parallax-section');
+            const midGroup = document.querySelector('.parallax-mid-group');
+
+            if (section && midGroup) {
+                // セクションの上端位置を取得
+                const sectionTop = section.offsetTop;
+                // 画面の高さを取得
+                const windowHeight = window.innerHeight;
+
+                // セクションが画面下部から見え始めるスクロール位置
+                const startPos = sectionTop - windowHeight;
+
+                if (scrolled >= startPos) {
+                // 画面に入ってきたタイミングからのスクロール差分
+                const relativeScroll = scrolled - startPos;
+                
+                // 上に向かって動かす（0.3 は移動スピード。お好みで調整）
+                midGroup.style.transform = `translateY(-${relativeScroll * 0.3}px)`;
+                } else {
+                // 開始位置より上の時は動かさない
+                midGroup.style.transform = `translateY(0px)`;
+                }
+            }
+            });
+        </script>
+        
+        <!-- <div class="parallax-container" style="
+            height: 100vh;
+            overflow-x: hidden;
+            overflow-y: auto;
+            perspective: 1px; /* 視点の距離 */
+            perspective-origin: 0 0;
+        ">
+            <div style="height: 600px; background-color: transparent;"></div>
+            <div class="parallax-layer layer-mid" style="
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                perspective-origin: 0 0;
+                transform: translateZ(-1px) scale(2);
+                z-index: 2;
+            ">中景エリア<img src="assets/images/logo.svg" alt=""></div>
+        </div> -->
+
+        <!-- background-info -->
+        <div class="background-info">
 
         <!-- 7. ACCESS & INFO -->
         <section class="content-section section-alt" id="access">
-            <h2 class="section-title">アクセス・店舗情報</h2>
-            <p class="section-subtitle">ACCESS & INFO</p>
-            <p>
+            <h2 class="section-title white">アクセス・店舗情報</h2>
+            <p class="section-subtitle white">ACCESS & INFO</p>
+            <p class="white">
                 京都御所のすぐ東側、静かな鳥居をくぐり、まっすぐな参道を進んだ左手にございます。少し疲れたときは、いつでもお気軽にお立ち寄りください。
             </p>
             <div class="info-card">
                 <div class="noren">
                     <img src="assets/images/logo.svg">
-                    <span><span style="font-size: 0.75em;">COFFEE BASE</span><br>NASHINOKI</span>
+                    <span style="text-align: center;"><span style="font-size: 0.75em;">COFFEE BASE</span><br>NASHINOKI</span>
                     <img src="assets/images/kamon.svg">
                 </div>
 
@@ -187,14 +323,19 @@
             </div>
         </section>
 
-        <!-- 8. INSTAGRAM & NEWS -->
+        <!-- 8. SNS & NEWS -->
         <section class="content-section">
-            <h2 class="section-title">お知らせ・日々の空気感</h2>
-            <p class="section-subtitle">INSTAGRAM & NEWS</p>
-            <p>境内の四季の移り変わりや、季節の和菓子、最新の豆の入荷情報はInstagramにて日々発信しています。</p>
+            <h2 class="section-title white">お知らせ・日々の空気感</h2>
+            <p class="section-subtitle white">SNS & NEWS</p>
+            <p class="white">境内の四季の移り変わりや、季節の和菓子、最新の豆の入荷情報はInstagramにて日々発信しています。</p>
             <div style="margin-bottom: 24px;"><img src="assets/images/coffeebase.nashinoki_qr.png" style="width: 200px; margin: 0 auto;"></div>
-            <a href="https://www.instagram.com/coffeebase.nashinoki/" target="_blank" rel="noopener" class="btn-accent">公式Instagramを見る</a>
+            <a href="https://www.instagram.com/coffeebase.nashinoki/" target="_blank" rel="noopener" class="btn-accent white">Instagram</a>
+            <a href="https://www.facebook.com/coffeebasenashinoki" target="_blank" rel="noopener" class="btn-accent white">Facebook</a>
+            <a href="https://kanondo.theshop.jp/" target="_blank" rel="noopener" class="btn-accent white">SHOP</a>
         </section>
+
+        <!-- /background-info -->
+        </div>
     </main>
 
     <!-- 9. FOOTER -->
@@ -202,7 +343,7 @@
         <div class="footer-inner">
             <div style="display: flex; align-items: center; justify-content: center; gap: 20px;">
                 <img src="assets/images/logo.svg" style="width: 64px; height: 64px;">
-                <span class="site-logo" style="font-size: 1em; line-height: -2.5em; color: #1A1A1A;">
+                <span class="site-logo" style="font-size: 1em; line-height: 1em; color: #1A1A1A;">
                 <span style="font-size: 0.75em;">COFFEE BASE</span><br>NASHINOKI</span>
                 <img src="assets/images/kamon.svg" style="width: 64px; height: 64px;">
             </div>
@@ -210,7 +351,7 @@
                 <a href="index.html">TOP</a>
                 <a href="about/">ABOUT</a>
                 <a href="story/">STORY</a>
-                <a href="menu/">MENU & FINDER</a>
+                <a href="menu/">MENU</a>
                 <a href="#access">ACCESS</a>
             </nav>
             <p class="copyright">&copy; Coffee Base NASHINOKI All Rights Reserved.</p>
@@ -219,6 +360,5 @@
 
     <!-- トップに戻るボタン -->
     <button class="to-top" id="js-to-top" aria-label="ページトップに戻る"><img src="assets/images/logo.svg" alt=""><p>TOP</p></button>
-    <script src="assets/js/main.js"></script>
 </body>
 </html>
