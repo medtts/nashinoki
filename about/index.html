@@ -6,9 +6,98 @@
     <title>ABOUT（理念・店舗紹介） | Coffee Base NASHINOKI</title>
     <link rel="icon" href="/assets/images/logo.svg" type="image/svg+xml">
     <link rel="icon" href="/assets/images/logo.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600&family=Zen+Maru+Gothic:wght@400;500&family=Cormorant:ital@1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/style.css">
     <!-- Leaflet.js（地図ライブラリ）のCSS読み込み -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <style>
+        .site-logo {
+            letter-spacing: 0.03em;
+        }
+        .background-about {
+            position: relative;
+            padding: 120px 24px 80px;
+            width: 100%;
+            /* background-color: var(--color-white); */
+            border-radius: 20px;
+        }
+        .background-about::after {
+            position: absolute;
+            content: '';
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url(../assets/images/hero.png);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: contrast(0.75) brightness(0.5);
+            z-index: -1;
+        }
+        .background-shops {
+            padding: 20px 24px 80px;
+            width: 100%;
+            background-color: var(--color-paper);
+            border-radius: 20px;
+        }
+        .section-shops h3 {
+            position: relative;
+            padding-left: 30px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.4rem !important;
+            letter-spacing: 0.03em;
+        }
+        .section-shops h3::before {
+            position: absolute;
+            content: '';
+            top: 0;
+            left: 0;
+            width: 24px;
+            height: 24px;
+            background-image: url(../assets/images/logo.svg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            transform: translateY(9px);
+        }
+        .section-shops h4 {
+            position: relative;
+            padding-left: 12px;
+            font-family: sans-serif;
+        }
+        .section-shops h4::before {
+            position: absolute;
+            content: '';
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 18px;
+            background-color: var(--color-ink);
+            /* background-image: url(../assets/images/logo.svg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat; */
+            transform: translateY(6px);
+        }
+        .section-shops p {
+            padding-left: 12px;
+            display: inline-block;
+            /* border-bottom: 1px solid #999; */
+        }
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.4rem;
+            letter-spacing: 0.03em;
+        }
+        .section-subtitle {
+            font-family: "Shippori Mincho", serif;
+            
+        }
+    </style>
 </head>
 <body>
 
@@ -32,12 +121,14 @@
         </div>
     </header>
 
-    <main class="page-container">
+    <main class="">
+        <!-- background -->
+        <div class="background-about">
         <!-- 理念セクション -->
-        <section style="text-align: center; max-width: 700px; margin: 40px auto 80px;">
-            <h1 class="section-title">Beyond a cup of coffee.</h1>
-            <p class="section-subtitle">コーヒーの向こう側へ</p>
-            <p style="font-size: 1.1rem; line-height: 2.2; margin-top: 40px;">
+        <section class="content-section" style="text-align: center; max-width: 700px; margin: 40px auto 80px;">
+            <h1 class="section-title white">Beyond a cup of coffee.</h1>
+            <p class="section-subtitle white">コーヒーの向こう側へ</p>
+            <p class="white" style="font-size: 1.1rem; line-height: 2.2; margin-top: 40px;">
                 無意味なコーヒーなど無い。<br>
                 その一杯には、想いがあり、意味がある。<br><br>
                 届けたいのは、ただのコーヒーではありません。<br>
@@ -46,72 +137,203 @@
             </p>
         </section>
 
+        
+        <section>
+            <style>
+                .map {
+                    max-width: 600px;
+                    margin: 0 auto;
+                }
+                .geolonia-svg-map
+                {
+                width: 100%;
+                }
+                .geolonia-svg-map .prefecture {
+                    fill: transparent;
+                    stroke: #999;
+                    cursor: none;
+                }
+                .geolonia-svg-map .kyoto,
+                .geolonia-svg-map .osaka,
+                .geolonia-svg-map .shiga,
+                .geolonia-svg-map .tokyo
+                {
+                fill: #f7f7f7;
+                stroke: #999;
+                cursor: pointer;
+                }
+
+                .geolonia-svg-map title {
+                    color: var(--color-paper);
+                }
+
+                .geolonia-svg-map .boundary-line
+                {
+                stroke: transparent;
+                }
+            </style>
+            
+            <div class="map"></div>
+<script>
+    const maps = [ "../assets/images/map-mobile.svg" ]
+    const containers = document.querySelectorAll( '.map' )
+
+    const targetPrefs = [ "tokyo", "shiga", "kyoto", "osaka" ]
+
+    maps.forEach( async ( map, index ) => {
+        const res = await fetch( map )
+
+        if ( res.ok ) {
+            const svg = await res.text()
+            containers[ index ].innerHTML = svg
+            const prefs = document.querySelectorAll( '.geolonia-svg-map .prefecture' )
+
+            prefs.forEach( ( pref ) => {
+                const isTarget = targetPrefs.some( target => pref.classList.contains( target ) )
+
+                if ( isTarget ) {
+                    // ホバー時のスタイル設定
+                    pref.addEventListener( 'mouseover', ( event ) => {
+                        event.currentTarget.style.fill = "#5A7352"
+                    } )
+                    pref.addEventListener( 'mouseleave', ( event ) => {
+                        event.currentTarget.style.fill = ""
+                    } )
+
+                    // クリック時のジャンプ処理（50px上にオフセット）
+                    pref.addEventListener( 'click', ( event ) => {
+                        const matchedTarget = targetPrefs.find( target => event.currentTarget.classList.contains( target ) )
+                        
+                        if ( matchedTarget ) {
+                            const targetSection = document.getElementById( `area-${matchedTarget}` )
+                            if ( targetSection ) {
+                                // 要素の画面上の位置を取得し、現在のスクロール量を足す
+                                const rect = targetSection.getBoundingClientRect()
+                                const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+                                const targetY = rect.top + scrollTop - 100 // 100px上にオフセット
+
+                                window.scrollTo({
+                                    top: targetY,
+                                    behavior: 'smooth'
+                                })
+                            }
+                        }
+                    } )
+
+                    // カーソルをポインターに変更
+                    pref.style.cursor = 'pointer'
+
+                } else {
+                    // 対象外の都道府県はカーソルを通常にし、ポインターイベントを無効化
+                    pref.style.cursor = 'default'
+                    pref.style.pointerEvents = 'none'
+                }
+            } )
+        }
+    } )
+</script>        </section>
+
+        <!-- background -->
+        </div>
+
+        <!-- background -->
+        <div class="background-shops">
+
+
         <!-- 全店舗マップセクション -->
         <section style="margin-top: 80px;">
-            <h2 class="section-title">Store Locations Map</h2>
-            <p class="section-subtitle">全国の Coffee Base 各店舗の正確な位置</p>
+            <!-- <h2 class="section-title">Store Locations Map</h2>
+            <p class="section-subtitle">全国の Coffee Base 各店舗の正確な位置</p> -->
             
             <!-- マップを表示するボックス（初期は近畿・京都中心。ズームやスクロールで東京も確認可能） -->
-            <div id="japan-map" style=" z-index: 1; width: 100%; height: 500px; border-radius: 8px; margin-top: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);"></div>
+            <!-- <div id="japan-map" style=" z-index: 1; width: 100%; height: 500px; border-radius: 8px; margin-top: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);"></div> -->
         </section>
 
         <!-- 店舗一覧セクション -->
-        <section style="margin-top: 80px;">
+        <section class="section-shops" style="margin-top: 80px;">
             <h2 class="section-title">Our Shops</h2>
             <p class="section-subtitle">Coffee Base グループの店舗案内</p>
 
             <!-- 京都エリア -->
-            <div style="margin-top: 40px; background-color: var(--color-white); padding: 40px; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.03);">
-                <h3 style="font-size: 1.2rem; border-bottom: 2px solid var(--color-accent); padding-bottom: 10px; margin-bottom: 24px; color: var(--color-accent);">■ 京都エリア</h3>
+            <div id="area-kyoto" style="margin-top: 40px; background-color: var(--color-white); padding: 10px 40px 40px 40px; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.03);">
+                <h3 style="font-size: 1.4rem; border-bottom: 2px solid var(--color-accent); padding-bottom: 10px; margin-bottom: 24px; color: var(--color-accent);">KYOTO </h3>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
                     <div>
                         <h4 style="margin: 0 0 4px 0; font-size: 1.05rem;">Coffee Base KANONDO</h4>
-                        <p style="margin: 0; font-size: 0.9rem; opacity: 0.75;">（四条烏丸）</p>
+                        <p style="margin: 0; font-size: 0.9rem; opacity: 0.75;">〒604-8222 京都府京都市中京区観音堂町４６６ みやこビル 3F</p>
+                        <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3268.100043405355!2d135.7575206!3d35.0042007!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6001091cd977df21%3A0x65c34d2886ce5065!2sCoffee%20Base%20KANONDO!5e0!3m2!1sja!2sjp!4v1787021432162!5m2!1sja!2sjp" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe> -->
                     </div>
                     <div>
                         <h4 style="margin: 0 0 4px 0; font-size: 1.05rem;">Coffee Base COCON KARASUMA</h4>
-                        <p style="margin: 0; font-size: 0.9rem; opacity: 0.75;">（烏丸御池・四条烏丸）</p>
+                        <p style="margin: 0; font-size: 0.9rem; opacity: 0.75;">〒600-8411 京都府京都市下京区水銀屋町６２０ COCON KARASUMA 1F</p>
+                        <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3268.142644655815!2d135.7591162!3d35.0031342!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x600109148f3b8499%3A0x81f9ae18e4359a87!2sCoffee%20Base%20COCON%20KARASUMA!5e0!3m2!1sja!2sjp!4v1787021469082!5m2!1sja!2sjp" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe> -->
                     </div>
                     <div>
                         <h4 style="margin: 0 0 4px 0; font-size: 1.05rem;">Coffee Base BnA</h4>
-                        <p style="margin: 0; font-size: 0.9rem; opacity: 0.75;">（河原町・先斗町エリア / BnA Alter Museum内）</p>
+                        <p style="margin: 0; font-size: 0.9rem; opacity: 0.75;">〒600-8024 京都府京都市下京区天満町２６７−１ 2F BnA Alter Museum</p>
+                        <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3268.2586269632916!2d135.7684065!3d35.0002305!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x600109d9a826411b%3A0x214b6c23e698d143!2sCoffee%20Base%20BnA!5e0!3m2!1sja!2sjp!4v1787021499461!5m2!1sja!2sjp" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe> -->
                     </div>
                     <div>
                         <h4 style="margin: 0 0 4px 0; font-size: 1.05rem;">Coffee Base NASHINOKI</h4>
-                        <p style="margin: 0; font-size: 0.9rem; opacity: 0.75;">（京都御所・梨木神社東側）</p>
+                        <p style="margin: 0; font-size: 0.9rem; opacity: 0.75;">〒602-0844 京都府京都市上京区染殿町６８０（梨木神社内）</p>
                     </div>
                     <div>
                         <h4 style="margin: 0 0 4px 0; font-size: 1.05rem;">Coffee Base SHIMOGAMO</h4>
-                        <p style="margin: 0; font-size: 0.9rem; opacity: 0.75;">（下鴨神社近く・リバーサイドカフェ）</p>
+                        <p style="margin: 0; font-size: 0.9rem; opacity: 0.75;">〒606-8101 京都府京都市左京区高野蓼原町１４−１</p>
                     </div>
-                </div>
-            </div>
-
-            <!-- 東京エリア -->
-            <div style="margin-top: 40px; background-color: var(--color-white); padding: 40px; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.03);">
-                <h3 style="font-size: 1.2rem; border-bottom: 2px solid var(--color-accent); padding-bottom: 10px; margin-bottom: 24px; color: var(--color-accent);">■ 東京エリア</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
                     <div>
-                        <h4 style="margin: 0 0 4px 0; font-size: 1.05rem;">COFFEE BASE MEGURO</h4>
-                        <p style="margin: 0; font-size: 0.9rem; opacity: 0.75;">（目黒区目黒 / 目黒川沿いの自家焙煎カフェ）</p>
+                        <h4 style="margin: 0 0 4px 0; font-size: 1.05rem;">fiveran kyoto coffee BASE</h4>
+                        <p style="margin: 0; font-size: 0.9rem; opacity: 0.75;">〒604-8174 京都府京都市中京区室町通三条上る役行者町３７７</p>
+                    </div>
+                    <div>
+                        <h4 style="margin: 0 0 4px 0; font-size: 1.05rem;">fiveran coffee BASE</h4>
+                        <p style="margin: 0; font-size: 0.9rem; opacity: 0.75;">〒600-8218 京都府京都市下京区七条通新町東入西境町１６７</p>
                     </div>
                 </div>
             </div>
 
             <!-- 大阪エリア -->
-            <div style="margin-top: 40px; background-color: var(--color-white); padding: 40px; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.03);">
-                <h3 style="font-size: 1.2rem; border-bottom: 2px solid var(--color-accent); padding-bottom: 10px; margin-bottom: 24px; color: var(--color-accent);">■ 大阪エリア（コラボ・新業態）</h3>
+            <div id="area-osaka" style="margin-top: 40px; background-color: var(--color-white); padding: 10px 40px 40px 40px; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.03);">
+                <h3 style="font-size: 1.4rem; border-bottom: 2px solid var(--color-accent); padding-bottom: 10px; margin-bottom: 24px; color: var(--color-accent);">OSAKA </h3>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
                     <div>
-                        <h4 style="margin: 0 0 4px 0; font-size: 1.05rem;">fiveran osaka coffee BASE</h4>
-                        <p style="margin: 0; font-size: 0.9rem; opacity: 0.75;">（エキマルシェ大阪店 / JR大阪駅構内）</p>
+                        <h4 style="margin: 0 0 4px 0; font-size: 1.05rem;">fiveran osaka coffee BASE エキマルシェ大阪店</h4>
+                        <p style="margin: 0; font-size: 0.9rem; opacity: 0.75;">〒530-0001 大阪府大阪市北区梅田３丁目１−１</p>
                     </div>
                     <div>
-                        <h4 style="margin: 0 0 4px 0; font-size: 1.05rem;">fiveran osaka coffee BASE</h4>
-                        <p style="margin: 0; font-size: 0.9rem; opacity: 0.75;">（松坂屋高槻店）</p>
+                        <h4 style="margin: 0 0 4px 0; font-size: 1.05rem;">fiveran osaka coffee BASE 松坂屋高槻店</h4>
+                        <p style="margin: 0; font-size: 0.9rem; opacity: 0.75;">〒569-0804 大阪府高槻市紺屋町２−１ 1階 松坂屋 高槻店</p>
+                    </div>
+                    <div>
+                        <h4 style="margin: 0 0 4px 0; font-size: 1.05rem;">fiveran osaka coffee BASE（グランフロント大阪）</h4>
+                        <p style="margin: 0; font-size: 0.9rem; opacity: 0.75;">〒530-0011 大阪府大阪市北区大深町４−２０ グランフロント大阪 南館 B1F</p>
                     </div>
                 </div>
             </div>
+
+            <!-- 滋賀エリア -->
+            <div id="area-shiga" style="margin-top: 40px; background-color: var(--color-white); padding: 10px 40px 40px 40px; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.03);">
+                <h3 style="font-size: 1.4rem; border-bottom: 2px solid var(--color-accent); padding-bottom: 10px; margin-bottom: 24px; color: var(--color-accent);">SHIGA </h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+                    <div>
+                        <h4 style="margin: 0 0 4px 0; font-size: 1.05rem;">Coffee Base NAGAHAMA</h4>
+                        <p style="margin: 0; font-size: 0.9rem; opacity: 0.75;">〒529-0212 滋賀県長浜市高月町井口１３７１−６</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 東京エリア -->
+            <div id="area-tokyo" style="margin-top: 40px; background-color: var(--color-white); padding: 10px 40px 40px 40px; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.03);">
+                <h3 style="font-size: 1.4rem; border-bottom: 2px solid var(--color-accent); padding-bottom: 10px; margin-bottom: 24px; color: var(--color-accent);">TOKYO </h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+                    <div>
+                        <h4 style="margin: 0 0 4px 0; font-size: 1.05rem;">Coffee Base MEGURO</h4>
+                        <p style="margin: 0; font-size: 0.9rem; opacity: 0.75;">〒153-0063 東京都目黒区目黒２丁目８−８</p>
+                    </div>
+                </div>
+            </div>
+
+            
         </section>
 
         <!-- Googleマップ 店舗紹介セクション -->
@@ -128,6 +350,9 @@
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3267.362149021487!2d135.7675!3d35.0238!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6001088d8b85b969%3A0x62957cf354f57567!2z5qOu5pSv56We56S-!5e0!3m2!1sja!2sjp!4v1650000000000!5m2!1sja!2sjp" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </section>
+
+        <!-- background -->
+        </div>
     </main>
 
     <!-- トップに戻るボタン -->
@@ -138,10 +363,11 @@
         <div class="footer-inner">
             <p class="site-logo">Coffee Base NASHINOKI</p>
             <nav class="footer-nav">
-                <a href="../index.html">TOP</a>
-                <a href="../about/">ABOUT</a>
-                <a href="../story/">STORY</a>
-                <a href="../menu/">MENU & FINDER</a>
+                <a href="index.html">TOP</a>
+                <a href="about/">ABOUT</a>
+                <a href="story/">STORY</a>
+                <a href="menu/">MENU</a>
+                <a href="#access">ACCESS</a>
             </nav>
             <p class="copyright">&copy; Coffee Base NASHINOKI All Rights Reserved.</p>
         </div>
@@ -153,39 +379,39 @@
     
     <!-- 全8店舗の正確な位置にピンを立てるスクリプト -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // 日本全体を見渡せる中心座標
-            const map = L.map('japan-map').setView([35.2, 136.5], 7);
+        // document.addEventListener('DOMContentLoaded', () => {
+        //     // 日本全体を見渡せる中心座標
+        //     const map = L.map('japan-map').setView([35.2, 136.5], 7);
 
-            // 落ち着いた色合いの地図タイル
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 18,
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(map);
+        //     // 落ち着いた色合いの地図タイル
+        //     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        //         maxZoom: 18,
+        //         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        //     }).addTo(map);
 
-            // 各店舗の修正された正確な緯度・経度データ
-            const stores = [
-                // 京都エリア (5店舗)
-                { name: "Coffee Base NASHINOKI", desc: "京都府京都市上京区染殿町680 (梨木神社境内)", coords: [35.0234, 135.7674] },
-                { name: "Coffee Base KANONDO", desc: "京都府京都市中京区観音堂町466", coords: [35.0041, 135.7591] },
-                { name: "Coffee Base COCON KARASUMA", desc: "京都府京都市下京区水銀屋町620", coords: [35.0035, 135.7588] },
-                { name: "Coffee Base BnA", desc: "京都府京都市下京区天満町267-1", coords: [35.0022, 135.7709] },
-                { name: "Coffee Base SHIMOGAMO", desc: "京都府京都市左京区高野蓼原町14-1", coords: [35.0383, 135.7731] },
+        //     // 各店舗の修正された正確な緯度・経度データ
+        //     const stores = [
+        //         // 京都エリア (5店舗)
+        //         { name: "Coffee Base NASHINOKI", desc: "京都府京都市上京区染殿町680 (梨木神社境内)", coords: [35.0234, 135.7674] },
+        //         { name: "Coffee Base KANONDO", desc: "京都府京都市中京区観音堂町466", coords: [35.0041, 135.7591] },
+        //         { name: "Coffee Base COCON KARASUMA", desc: "京都府京都市下京区水銀屋町620", coords: [35.0035, 135.7588] },
+        //         { name: "Coffee Base BnA", desc: "京都府京都市下京区天満町267-1", coords: [35.0022, 135.7709] },
+        //         { name: "Coffee Base SHIMOGAMO", desc: "京都府京都市左京区高野蓼原町14-1", coords: [35.0383, 135.7731] },
                 
-                // 東京エリア (1店舗)
-                { name: "COFFEE BASE MEGURO", desc: "東京都目黒区目黒2-8-8", coords: [35.6342, 139.7155] },
+        //         // 東京エリア (1店舗)
+        //         { name: "COFFEE BASE MEGURO", desc: "東京都目黒区目黒2-8-8", coords: [35.6342, 139.7155] },
                 
-                // 大阪エリア (2店舗)
-                { name: "fiveran osaka coffee BASE (エキマルシェ大阪店)", desc: "大阪府大阪市北区梅田3-1-1", coords: [34.7018, 135.4952] },
-                { name: "fiveran osaka coffee BASE (松坂屋高槻店)", desc: "大阪府高槻市紺屋町2-1", coords: [34.8510, 135.6171] }
-            ];
+        //         // 大阪エリア (2店舗)
+        //         { name: "fiveran osaka coffee BASE (エキマルシェ大阪店)", desc: "大阪府大阪市北区梅田3-1-1", coords: [34.7018, 135.4952] },
+        //         { name: "fiveran osaka coffee BASE (松坂屋高槻店)", desc: "大阪府高槻市紺屋町2-1", coords: [34.8510, 135.6171] }
+        //     ];
 
-            // 各店舗のピンをマップに配置
-            stores.forEach(store => {
-                L.marker(store.coords).addTo(map)
-                    .bindPopup(`<b>${store.name}</b><br><span style="font-size:0.85rem; opacity:0.8;">${store.desc}</span>`);
-            });
-        });
+        //     // 各店舗のピンをマップに配置
+        //     stores.forEach(store => {
+        //         L.marker(store.coords).addTo(map)
+        //             .bindPopup(`<b>${store.name}</b><br><span style="font-size:0.85rem; opacity:0.8;">${store.desc}</span>`);
+        //     });
+        // });
     </script>
 </body>
 </html>
