@@ -7,16 +7,36 @@
     <link rel="icon" href="/assets/images/logo.svg" type="image/svg+xml">
     <link rel="icon" href="/assets/images/logo.png" type="image/png">
     <link rel="stylesheet" href="../assets/css/style.css">
+
+    <style>
+        .background-menus,
+        .background-details {
+            position: relative;
+            padding: 120px 24px 80px;
+            width: 100%;
+            border-radius: 20px;
+            background-color: var(--color-white);
+        }
+        .background-chart,
+        .background-finder {
+            position: relative;
+            padding: 120px 24px 80px;
+            width: 100%;
+            border-radius: 20px;
+
+            background-color: var(--color-paper);
+        }
+        .menu-wrap {
+            margin-bottom: 60px;
+        }
+    </style>
 </head>
 <body>
-    <!-- ヘッダー -->
+
     <header class="site-header">
         <div class="header-inner">
             <a href="../index.html" class="site-logo">Coffee Base NASHINOKI</a>
-            <button class="hamburger" id="js-hamburger" aria-label="メニューを開閉する">
-                <span></span><span></span><span></span>
-            </button>
-            <nav class="site-nav" id="js-nav">
+            <nav class="site-nav">
                 <ul>
                     <li><a href="../index.html">TOP</a></li>
                     <li><a href="../about/">ABOUT</a></li>
@@ -29,92 +49,108 @@
         </div>
     </header>
 
-    <main class="page-container">
+    <main>
+
+        <!-- background -->
+        <div class="background-menus">
+
+        <section class="menu-content" style="max-width: 800px; margin: 60px auto;">
+
         <h1 class="section-title">MENU</h1>
         <p class="section-subtitle">こだわりの名水で淹れる、至福の一杯。</p>
 
-        <section class="menu-content" style="max-width: 800px; margin: 60px auto;">
             
             <!-- RECOMMENDED -->
-            <div class="menu-section">
+            <div class="menu-wrap">
                 <h2 class="menu-category">RECOMMENDED</h2>
                 <ul class="menu-list">
-                    <li><span>水出しコーヒー ブレンド (アイスのみ)</span><span>660円</span></li>
-                    <li><span>＋栗まんじゅうセット</span><span>1,030円</span></li>
+                    <p class="menu-sub">Cold Brew (Iced Only)</p>
+                    <li><span>水出しコーヒー ブレンド</span><span>660</span></li>
+                    <li><span>＋栗まんじゅうセット</span><span>1,030</span></li>
                 </ul>
             </div>
 
             <!-- COFFEE & CAFE LATTE -->
-            <div class="menu-section">
+            <div class="menu-wrap">
                 <h2 class="menu-category">COFFEE & CAFE LATTE</h2>
-                <h3 class="menu-sub">シングル・スペシャリティ</h3>
+                <!-- <h3 class="menu-sub">シングル・スペシャリティ</h3> -->
                 <ul class="menu-list">
-                    <li><span>コーヒー (Hot): シングル・スペシャリティ</span><span>660円</span></li>
-                    <li><span>コーヒー (Hot): スペシャリティ・ブレンド</span><span>550円</span></li>
-                    <li><span>＋栗まんじゅうセット (ブレンドホットのみ)</span><span>920円</span></li>
-                    <li><span>カフェラテ (Hot/Iced): シングル・スペシャリティ</span><span>700円</span></li>
-                    <li><span>カフェラテ (Hot/Iced): スペシャリティ・ブレンド</span><span>600円</span></li>
+                    <p class="menu-sub">Pour Over (Hot)</p>
+                    <li><span>ドリップコーヒー : シングル・スペシャリティ</span><span>660</span></li>
+                    <li><span>ドリップコーヒー : スペシャリティ・ブレンド</span><span>550</span></li>
+                    <li><span>＋栗まんじゅうセット (ブレンドのみ)</span><span>920</span></li>
+                    <p class="menu-sub">Cafe Latte (Hot/Iced)</p>
+                    <li><span>カフェラテ : シングル・スペシャリティ</span><span>700</span></li>
+                    <li><span>カフェラテ : スペシャリティ・ブレンド</span><span>600</span></li>
                 </ul>
             </div>
 
             <!-- FLAT WHITE -->
-            <div class="menu-section">
+            <div class="menu-wrap">
                 <h2 class="menu-category">FLAT WHITE (Hot Only)</h2>
                 <ul class="menu-list">
-                    <li><span>エチオピア (浅煎り)</span><span>700円</span></li>
-                    <li><span>ブラジル (深煎り)</span><span>700円</span></li>
+                    <li><span>エチオピア (浅煎り)</span><span>700</span></li>
+                    <li><span>ブラジル (深煎り)</span><span>700</span></li>
                 </ul>
             </div>
 
             <!-- ESPRESSO -->
-            <div class="menu-section">
+            <div class="menu-wrap">
                 <h2 class="menu-category">ESPRESSO Drinks</h2>
                 <ul class="menu-list">
-                    <li><span>エスプレッソ</span><span>390円</span></li>
-                    <li><span>ロングブラック (Hot/Iced)</span><span>600円</span></li>
+                    <li><span>エスプレッソ</span><span>390</span></li>
+                    <li><span>ロングブラック (Hot/Iced)</span><span>600</span></li>
                 </ul>
             </div>
 
             <!-- TEA & LEMONADE -->
-            <div class="menu-section">
+            <div class="menu-wrap">
                 <h2 class="menu-category">TEA & LEMONADE</h2>
                 <ul class="menu-list">
-                    <li><span>抹茶ラテ (Hot/Iced)</span><span>680円</span></li>
-                    <li><span>ほうじ茶ラテ (Hot/Iced)</span><span>680円</span></li>
-                    <li><span>レモネード (Hot/Iced)</span><span>680円</span></li>
-                    <li><span>レモネードソーダ</span><span>700円</span></li>
+                    <p class="menu-sub">TEA (Hot/Iced)</p>
+                    <li><span>抹茶ラテ</span><span>680</span></li>
+                    <li><span>ほうじ茶ラテ</span><span>680</span></li>
+                    <p class="menu-sub">LEMONADE</p>
+                    <li><span>レモネード (Hot/Iced)</span><span>680</span></li>
+                    <li><span>レモネードソーダ</span><span>700</span></li>
                 </ul>
             </div>
 
             <!-- BOTTLE Drinks -->
-            <div class="menu-section">
+            <div class="menu-wrap">
                 <h2 class="menu-category">BOTTLE Drinks</h2>
                 <ul class="menu-list">
-                    <li><span>コーヒーゼリー＆カフェオレ</span><span>680円</span></li>
-                    <li><span>抹茶ミルク＆あずき</span><span>680円</span></li>
-                    <li><span>ストロベリーミルク</span><span>680円</span></li>
+                    <li><span>コーヒーゼリー＆カフェオレ</span><span>680</span></li>
+                    <li><span>抹茶ミルク＆あずき</span><span>680</span></li>
+                    <li><span>ストロベリーミルク</span><span>680</span></li>
                 </ul>
             </div>
 
             <!-- SWEETS -->
-            <div class="menu-section">
+            <div class="menu-wrap">
                 <h2 class="menu-category">SWEETS</h2>
                 <ul class="menu-list">
-                    <li><span>栗まんじゅう</span><span>380円</span></li>
-                    <li><span>バスクチーズケーキ</span><span>700円</span></li>
-                    <li><span>京都産全粒粉の酵母クッキー</span><span>660円</span></li>
+                    <li><span>栗まんじゅう</span><span>380</span></li>
+                    <li><span>バスクチーズケーキ</span><span>700</span></li>
+                    <li><span>京都産全粒粉の酵母クッキー</span><span>660</span></li>
                 </ul>
             </div>
 
             <!-- MILK OPTION -->
-            <div class="menu-section menu-option">
+            <div class="menu-wrap menu-option">
                 <h2 class="menu-category">MILK OPTION</h2>
                 <ul class="menu-list">
-                    <li><span>豆乳</span><span>＋100円</span></li>
-                    <li><span>アーモンドミルク</span><span>＋150円</span></li>
+                    <li><span>豆乳</span><span>＋100</span></li>
+                    <li><span>アーモンドミルク</span><span>＋150</span></li>
                 </ul>
             </div>
         </section>
+
+        <!-- background -->
+        </div>
+
+        <!-- background -->
+        <div class="background-chart">
 
         <!-- Chart Section -->
         <section class="chart-section" id="beans-chart">
@@ -180,11 +216,11 @@
                 </div>
 
                 <!-- 6. コロンビア -->
-                <div class="bean-point" style="top: 40%; left: 60%;" 
+                <div class="bean-point" style="top: 52.5%; left: 62.5%;" 
                     data-target="detail-colombia" 
-                    data-title="コロンビア シエラネバダ キョート農園" 
-                    data-en="COLOMBIA, Sierra Nevada, Finca Kyoto"
-                    data-desc="マイルドなコクと、バランスの良い味わい。">
+                    data-title="コロンビア ナリーニョ ラ・ウニオン マイクロロット" 
+                    data-en="COLOMBIA, Narino, La Union micro lo"
+                    data-desc="深くマイルドな酸味と芳醇なボディ、ナッツ系の滑らかな後味。">
                     <span class="bean-name">コロンビア<br><small>Colombia</small></span>
                 </div>
 
@@ -226,6 +262,12 @@
             </div>
         </section>
 
+        <!-- background -->
+        </div>
+
+        <!-- background -->
+        <div class="background-details">
+
         <!-- 2. 豆の詳細リストセクション -->
         <section class="beans-section" id="beans-details">
             <h2 class="section-title">BEAN DETAILS</h2>
@@ -264,9 +306,9 @@
                 </li>
 
                 <li id="detail-colombia">
-                    <h3>コロンビア シエラネバダ キョート農園</h3>
-                    <p class="sub-en">COLOMBIA, Sierra Nevada, Finca Kyoto</p>
-                    <p>マイルドなコクと、バランスの良い味わい。</p>
+                    <h3>コロンビア ナリーニョ ラ・ウニオン マイクロロット</h3>
+                    <p class="sub-en">COLOMBIA, Narino, La Union micro lo</p>
+                    <p>深くマイルドな酸味と芳醇なボディ、ナッツ系の滑らかな後味。</p>
                 </li>
 
                 <li id="detail-uganda">
@@ -302,6 +344,12 @@
             <span class="tip-desc">*クリックで詳細にジャンプします。</span>
         </div>
 
+        <!-- background -->
+        </div>
+
+        <!-- background -->
+        <div class="background-finder">
+
         <!-- 豆診断セクション -->
         <section class="content-section" id="coffee-finder-section">
             <h2 class="section-title">COFFEE FINDER</h2>
@@ -316,7 +364,7 @@
                         <button class="finder-btn" data-next="2" data-value="fruity">フルーティーで華やかな酸味を楽しみたい</button>
                         <button class="finder-btn" data-next="2" data-value="balanced">バランスが良く、すっきりクリアに飲みたい</button>
                         <button class="finder-btn" data-next="2" data-value="deep">しっかりとしたコクやビター感がほしい</button>
-                        <button class="finder-btn" data-next="result" data-value="decaf">カフェインレスがいい（カフェインなし）</button>
+                        <button class="finder-btn" data-next="result" data-value="decaf">カフェインレスがいい</button>
                     </div>
                 </div>
 
@@ -338,9 +386,6 @@
             </div>
         </section>
     </main>
-
-    <!-- トップに戻るボタン -->
-    <button class="to-top" id="js-to-top" aria-label="ページトップに戻る"><img src="/assets/images/logo.svg" alt=""><p>TOP</p></button>
 
     <footer class="site-footer">
         <p>&copy; Coffee Base NASHINOKI All Rights Reserved.</p>
