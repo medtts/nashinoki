@@ -9,10 +9,19 @@
     <link rel="stylesheet" href="../assets/css/style.css">
 
     <style>
+        main {
+            width: 100%;
+            overflow: hidden;
+        }
+        .menu-sub {
+            margin-top: 40px;
+            margin-bottom: 0px;
+            text-align: left !important;
+        }
         .background-menus,
         .background-details {
             position: relative;
-            padding: 120px 24px 80px;
+            padding: 0px 0px 80px;
             width: 100%;
             border-radius: 20px;
             background-color: var(--color-white);
@@ -20,23 +29,75 @@
         .background-chart,
         .background-finder {
             position: relative;
-            padding: 120px 24px 80px;
+            padding: 0px 0px 80px;
             width: 100%;
             border-radius: 20px;
 
             background-color: var(--color-paper);
         }
+        
+        .background-chart {
+            top: -220px;
+        }
+        .background-details {
+            top: -400px;
+        }
+        .background-finder {
+            border-radius: 20px 20px 0 0;
+            /* background-color: var(--color-moss); */
+            top: -840px;
+            /* bottom: -820px; */
+            
+            margin-bottom: -12px; 
+            margin-bottom: -920px;
+            z-index: 2;
+        }
         .menu-wrap {
             margin-bottom: 60px;
         }
+        .site-footer {
+            position: relative;
+            background-color: var(--color-white);
+            color: var(--color-ink);
+            padding: 64px 24px 40px;
+            border-radius: 12px 12px 0 0;
+            text-align: center;
+            /* background-finderの下に潜り込ませる、または上方向へ12pxずらす */
+            /* margin-top: -832px; */
+            z-index: 1; 
+        }
+
+        /* デフォルト（スマホ表示など）：pc-brは改行させない */
+.pc-br {
+    display: none;
+}
+
+/* PCサイズ（例: 768px以上）のときだけ改行を有効にする */
+@media screen and (min-width: 768px) {
+    .pc-br {
+        display: inline;
+    }
+}
     </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+    <!-- LenisのCDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js" defer></script>
+    <!-- <script src="assets/js/main.js" defer></script> -->
+    <script src="../assets/js/menu.js" defer></script>
+    <script src="../assets/js/lenis.js" defer></script>
 </head>
 <body>
 
+    <!-- ヘッダー -->
     <header class="site-header">
         <div class="header-inner">
             <a href="../index.html" class="site-logo">Coffee Base NASHINOKI</a>
-            <nav class="site-nav">
+            <button class="hamburger" id="js-hamburger" aria-label="メニューを開閉する">
+                <span></span><span></span><span></span>
+            </button>
+            <nav class="site-nav" id="js-nav">
                 <ul>
                     <li><a href="../index.html">TOP</a></li>
                     <li><a href="../about/">ABOUT</a></li>
@@ -52,9 +113,27 @@
     <main>
 
         <!-- background -->
+        <div class="background-water">
+            <!-- 理念セクション -->
+            <section class="content-section white-logo" style="text-align: center; max-width: 700px; margin: 40px auto 80px;">
+                <h1 class="section-title white" style="font-family: sans-serif;">Kyoto's Three Famous Waters "Somei"</h1>
+                <p class="section-subtitle white" style="font-family: 'Shippori Mincho', serif;">京都三名水「染井の水」</p>
+                <p class="white" style="font-size: 1.0rem; line-height: 2.2; margin-top: 40px; ">
+                    梨木神社の境内に湧く「染井（そめい）」は、かつての京都三名水の中で<br class="pc-br">
+                    現在も唯一現存する貴重な湧き水です。<br><br>
+                    その清らかな味わいと品質の高さから、地元の方々や<br class="pc-br">
+                    祇園などの名だたる料理店にも長く愛され続けています。<br><br>
+                    私たちは、この名水と井戸を未来へ守り継ぐとともに、<br class="pc-br">
+                    その魅力と歴史を広く皆様にお伝えできるよう努めてまいります。
+                </p>
+            </section>        
+        </div>
+
+
+        <!-- background -->
         <div class="background-menus">
 
-        <section class="menu-content" style="max-width: 800px; margin: 60px auto;">
+        <section class="menu-content content-section" style="max-width: 800px; margin: 60px auto;">
 
         <h1 class="section-title">MENU</h1>
         <p class="section-subtitle">こだわりの名水で淹れる、至福の一杯。</p>
@@ -153,7 +232,7 @@
         <div class="background-chart">
 
         <!-- Chart Section -->
-        <section class="chart-section" id="beans-chart">
+        <section class="chart-section content-section id="beans-chart">
             <h2 class="section-title">FLAVOR CHART</h2>
             <p class="section-subtitle">SINGLE SPECIALTY BEANS</p>
 
@@ -269,7 +348,7 @@
         <div class="background-details">
 
         <!-- 2. 豆の詳細リストセクション -->
-        <section class="beans-section" id="beans-details">
+        <section class="beans-section content-section" id="beans-details">
             <h2 class="section-title">BEAN DETAILS</h2>
             <p class="section-subtitle">銘柄詳細</p>
 
@@ -385,12 +464,33 @@
 
             </div>
         </section>
+
+            <footer class="site-footer">
+        <div class="footer-inner">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 20px;">
+                <img src="../assets/images/logo.svg" style="width: 64px; height: 64px;">
+                <span class="site-logo" style="font-size: 1em; line-height: 1em; color: #1A1A1A;">
+                <span style="font-size: 0.75em;">COFFEE BASE</span><br>NASHINOKI</span>
+                <img src="../assets/images/kamon.svg" style="width: 64px; height: 64px;">
+            </div>
+            <nav class="footer-nav">
+                <a href="../index.html">TOP</a>
+                <a href="about/">ABOUT</a>
+                <a href="story/">STORY</a>
+                <a href="menu/">MENU</a>
+                <a href="#access">ACCESS</a>
+            </nav>
+            <p class="copyright">&copy; Coffee Base NASHINOKI All Rights Reserved.</p>
+        </div>
+    </footer>
+
     </main>
 
-    <footer class="site-footer">
-        <p>&copy; Coffee Base NASHINOKI All Rights Reserved.</p>
-    </footer>
-    <script src="../assets/js/main.js"></script>
+
+    <!-- トップに戻るボタン -->
+    <button class="to-top" id="js-to-top" aria-label="ページトップに戻る"><img src="/assets/images/logo.svg" alt=""><p>TOP</p></button>
+
+    <!-- <script src="../assets/js/main.js"></script> -->
     <script src="../assets/js/coffee-finder.js"></script>
 </body>
 </html>
