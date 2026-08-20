@@ -1,3 +1,27 @@
+// ========================================
+// スクロールに応じたヘッダーの配色切り替え
+// ========================================
+const header = document.querySelector('.site-header');
+const heroSection = document.querySelector('.philosophy');
+
+if (header && heroSection) {
+    const updateHeaderStyle = () => {
+        // heroセクションの下端位置を取得
+        const heroBottom = heroSection.getBoundingClientRect().bottom;
+        
+        // ヘッダーの高さ分を考慮して、heroが見えている間かどうか判定
+        if (heroBottom > 60) {
+            header.classList.remove('is-scrolled');
+        } else {
+            header.classList.add('is-scrolled');
+        }
+    };
+
+    window.addEventListener('scroll', updateHeaderStyle);
+    window.addEventListener('resize', updateHeaderStyle);
+    updateHeaderStyle(); // 初期実行
+}
+
 // ==========================================
 // .hero 全体をピン留め対象（trigger）にして pin: true を設定し、end: "+=1000"（1000px分スクロールするまで）と指定
 // ==========================================

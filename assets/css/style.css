@@ -222,6 +222,7 @@ h1, h2, h3 {
     letter-spacing: 0.22em;
     color: var(--color-hagi);
     margin-bottom: 3rem;
+    text-align: center;
 }
 
 .section-subtitle::before,
@@ -321,29 +322,45 @@ h1, h2, h3 {
     padding: 20px 48px;
     margin: 0 auto;
 
-}
-.top {
+
     box-shadow: none;
     background-color: transparent; /* 初期状態は透明 */
     backdrop-filter: none; /* 初期状態は0 */
+
 }
+/* .top {
+    box-shadow: none;
+    background-color: transparent; 
+    backdrop-filter: none; 
+} */
 
 /* TOPページだけヘッダー内の文字色を初期状態で白に */
-.top .site-logo
+/* .top .site-logo
 ,.top .site-nav a:not(.nav-btn) 
+{
+    color: var(--color-white);
+} */
+.site-logo
+,.site-nav a:not(.nav-btn) 
 {
     color: var(--color-white);
 }
 
 
 .site-header .site-nav a:not(.nav-btn)::after {
-    background-color: var(--color-moss);
+    background-color: var(--color-white);
 }
-.top .site-nav a:not(.nav-btn)::after {
+/* .top .site-nav a:not(.nav-btn)::after {
+    background-color: var(--color-white);
+} */
+.site-nav a:not(.nav-btn)::after {
     background-color: var(--color-white);
 }
 
-.top .site-nav.is-open a:not(.nav-btn)::after {
+/* .top .site-nav.is-open a:not(.nav-btn)::after {
+    background-color: var(--color-ink);
+} */
+.site-nav.is-open a:not(.nav-btn)::after {
     background-color: var(--color-ink);
 }
 
@@ -373,7 +390,10 @@ h1, h2, h3 {
     background-color: var(--color-white);
     transition: transform 0.3s, opacity 0.3s, background-color 0.4s;
 }
-.top .hamburger span {
+/* .top .hamburger span {
+    background-color: var(--color-white);
+} */
+.hamburger span {
     background-color: var(--color-white);
 }
 
@@ -399,8 +419,8 @@ h1, h2, h3 {
     font-family: sans-serif;
     font-size: 1.1rem;
     font-weight: 600;
-    letter-spacing: 0.08em;
-    color: var(--color-moss-deep);
+    letter-spacing: 0.03em;
+    color: var(--color-white);
 }
 
 /* 予約ボタン */
@@ -432,6 +452,9 @@ h1, h2, h3 {
 .site-nav a.is-current::after {
     right: 0;
 }
+.footer-nav a.is-current::after {
+    right: 0;
+}
 
 .site-nav .nav-btn {
     /* background-color: var(--color-moss); */
@@ -449,7 +472,12 @@ h1, h2, h3 {
 
     white-space: nowrap;
 }
-.top .site-nav .nav-btn {
+/* .top .site-nav .nav-btn {
+    color: var(--color-white);
+    background-color: rgba(0, 0, 0, 0.25);
+    white-space: nowrap;
+} */
+.site-nav .nav-btn {
     color: var(--color-white);
     background-color: rgba(0, 0, 0, 0.25);
     white-space: nowrap;

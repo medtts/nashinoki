@@ -1,3 +1,27 @@
+// ========================================
+// スクロールに応じたヘッダーの配色切り替え
+// ========================================
+const header = document.querySelector('.site-header');
+const heroSection = document.querySelector('.menu');
+
+if (header && heroSection) {
+    const updateHeaderStyle = () => {
+        // heroセクションの下端位置を取得
+        const heroBottom = heroSection.getBoundingClientRect().bottom;
+        
+        // ヘッダーの高さ分を考慮して、heroが見えている間かどうか判定
+        if (heroBottom > 60) {
+            header.classList.remove('is-scrolled');
+        } else {
+            header.classList.add('is-scrolled');
+        }
+    };
+
+    window.addEventListener('scroll', updateHeaderStyle);
+    window.addEventListener('resize', updateHeaderStyle);
+    updateHeaderStyle(); // 初期実行
+}
+
 // ==========================================
 // .hero 全体をピン留め対象（trigger）にして pin: true を設定し、end: "+=1000"（1000px分スクロールするまで）と指定
 // ==========================================
@@ -93,10 +117,66 @@ document.addEventListener('DOMContentLoaded', () => {
         ease: "none",
         duration: 1.2
     });
-    // ==========================================
-
-    // ==========================================
 });
     // ==========================================
 
     // ==========================================
+document.addEventListener('DOMContentLoaded', () => {
+    // ==========================================
+    // 1. ホバー時のTIPS（ツールチップ）制御
+    // ==========================================
+    const tooltip = document.getElementById('flavorTooltip');
+    const tipTitle = tooltip ? tooltip.querySelector('.tip-title') : null;
+    const tipEn = tooltip ? tooltip.querySelector('.tip-en') : null;
+    // const tipDesc = tooltip ? tooltip.querySelector('.tip-desc') : null;
+    const beanPoints = document.querySelectorAll('.bean-point');
+
+    if (tooltip) {
+        beanPoints.forEach(point => {
+            point.addEventListener('mouseenter', () => {
+                tipTitle.textContent = point.dataset.title;
+                tipEn.textContent = point.dataset.en; // 英語表記を追加
+                // tipDesc.textContent = point.dataset.desc;
+                tooltip.classList.add('is-active');
+            });
+
+            point.addEventListener('mousemove', (e) => {
+                // マウスの位置にツールチップを追従させる
+                // tooltip.style.transform = `translate(${e.clientX + 15}px, ${e.clientY + 15}px)`;
+                // clientX / clientY はスクロールやGSAPの影響を受けない画面上の絶対座標
+                tooltip.style.left = `${e.clientX + 5}px`;
+                tooltip.style.top = `${e.clientY + 5}px`;
+            });
+
+            point.addEventListener('mouseleave', () => {
+                tooltip.classList.remove('is-active');
+            });
+        });
+    }
+
+    // ==========================================
+    // 2. クリック（タップ）時の詳細リストへのスクロール制御
+    // ==========================================
+    beanPoints.forEach(point => {
+        point.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = point.getAttribute('data-target');
+            const targetElement = document.getElementById(targetId);
+
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+
+                // 選択された詳細リストを一時的にハイライトする演出
+                targetElement.style.transition = 'background-color 0.4s ease';
+                targetElement.style.backgroundColor = 'rgba(140, 110, 134, 0.12)';
+                
+                setTimeout(() => {
+                    targetElement.style.backgroundColor = 'transparent';
+                }, 1200);
+            }
+        });
+    });
+});
