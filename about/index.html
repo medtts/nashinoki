@@ -46,12 +46,26 @@
             border-radius: 20px;
         }
         .background-mainstore {
+            position: relative;
             padding: 20px 24px 80px;
             width: 100%;
-            background-color: var(--color-ink);
+            /* background-color: var(--color-ink); */
             border-radius: 20px;
             margin-bottom: -200px;
-
+        }
+        .background-mainstore::after {
+            position: absolute;
+            content: '';
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url(../assets/images/kanondo.webp);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: brightness(0.15) contrast(1.0);
+            z-index: -1;
         }
         .section-shops h3 {
             position: relative;
