@@ -252,14 +252,14 @@ document.addEventListener('DOMContentLoaded', () => {
     topOurTl
     // 1つ目のアニメーション（top center 〜）
     .to(".background-our", {
-        y: -300,
+        y: -200,
         opacity: 1,
         ease: "none",
         duration: 1.2
     })
     // 2つ目のアニメーション（bottom bottom 〜）
     .to(".background-our", {
-        y: -400,
+        y: -250,
         opacity: 1,
         ease: "none",
         duration: 1.2
