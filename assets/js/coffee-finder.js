@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
             name: "エチオピア イルガチェフェ G1 アメデラロ",
             en: "ETHIOPIA, Yirgacheffe G1, Amederararo",
             message: "まるで紅茶のよう。苦味はほぼ無く、華やかな香りが特徴的。",
-            choice: "紅茶のように軽やかで、苦味の少ない味わいがいい"
+            choice: "紅茶のように華やかで、苦味の少ない味わいがいい"
         },
         fruity_other: {
             name: "東ティモール レテフォホ ゴウララ村",
@@ -42,10 +42,10 @@ document.addEventListener('DOMContentLoaded', () => {
             choice: "甘みと苦味、両方のバランスをクリアに感じたい"
         },
         balanced_typeB: {
-            name: "コロンビア シエラネバダ キョート農園",
-            en: "COLOMBIA, Sierra Nevada, Finca Kyoto",
-            message: "マイルドなコクと、バランスの良い味わい。",
-            choice: "マイルドで飲みやすい、王道の一杯がいい"
+            name: "コロンビア ナリーニョ ラ・ウニオン マイクロロット",
+            en: "COLOMBIA, Narino, La Union micro lo",
+            message: "深くマイルドな酸味と芳醇なボディ、ナッツ系の滑らかな後味。",
+            choice: "マイルドなコクと、バランスの良い味わいがいい"
         },
         balanced_other: {
             name: "コスタリカ ジャガープロジェクト",

@@ -1,80 +1,80 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const hamburger = document.getElementById('js-hamburger');
-    const nav = document.getElementById('js-nav');
-    const toTopButton = document.getElementById('js-to-top');
+// document.addEventListener('DOMContentLoaded', () => {
+//     const hamburger = document.getElementById('js-hamburger');
+//     const nav = document.getElementById('js-nav');
+//     const toTopButton = document.getElementById('js-to-top');
 
-    // 1. ハンバーガーメニューの開閉
-    if (hamburger && nav) {
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('is-open');
-            nav.classList.toggle('is-open');
-            document.body.style.overflow = nav.classList.contains('is-open') ? 'hidden' : '';
-        });
+//     // 1. ハンバーガーメニューの開閉
+//     if (hamburger && nav) {
+//         hamburger.addEventListener('click', () => {
+//             hamburger.classList.toggle('is-open');
+//             nav.classList.toggle('is-open');
+//             document.body.style.overflow = nav.classList.contains('is-open') ? 'hidden' : '';
+//         });
 
-        // メニュー内リンククリック時
-        nav.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('is-open');
-                nav.classList.remove('is-open');
-                document.body.style.overflow = '';
-            });
-        });
+//         // メニュー内リンククリック時
+//         nav.querySelectorAll('a').forEach(link => {
+//             link.addEventListener('click', () => {
+//                 hamburger.classList.remove('is-open');
+//                 nav.classList.remove('is-open');
+//                 document.body.style.overflow = '';
+//             });
+//         });
 
-        // 画面幅拡大時にメニューを強制リセット
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 768 && nav.classList.contains('is-open')) {
-                hamburger.classList.remove('is-open');
-                nav.classList.remove('is-open');
-                document.body.style.overflow = '';
-            }
-        });
-    }
+//         // 画面幅拡大時にメニューを強制リセット
+//         window.addEventListener('resize', () => {
+//             if (window.innerWidth > 768 && nav.classList.contains('is-open')) {
+//                 hamburger.classList.remove('is-open');
+//                 nav.classList.remove('is-open');
+//                 document.body.style.overflow = '';
+//             }
+//         });
+//     }
 
-    // 2. スクロールによるトップに戻るボタンの表示・非表示
-    if (toTopButton) {
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                toTopButton.classList.add('is-show');
-            } else {
-                toTopButton.classList.remove('is-show');
-            }
-        });
+//     // 2. スクロールによるトップに戻るボタンの表示・非表示
+//     if (toTopButton) {
+//         window.addEventListener('scroll', () => {
+//             if (window.scrollY > 100) {
+//                 toTopButton.classList.add('is-show');
+//             } else {
+//                 toTopButton.classList.remove('is-show');
+//             }
+//         });
 
-        toTopButton.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    }
+//         toTopButton.addEventListener('click', () => {
+//             window.scrollTo({ top: 0, behavior: 'smooth' });
+//         });
+//     }
 
-    // 3. スクロールで静かに現れる演出（reduced motion 環境では無効）
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+//     // 3. スクロールで静かに現れる演出（reduced motion 環境では無効）
+//     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    if (!prefersReducedMotion && 'IntersectionObserver' in window) {
-        const revealTargets = document.querySelectorAll(
-            '.content-section .section-title, ' +
-            '.content-section p, ' +
-            '.content-section .btn-accent, ' +
-            '.content-section .grid-2, ' +
-            '.content-section .info-card, ' +
-            '.content-section .map-embed'
-        );
+//     if (!prefersReducedMotion && 'IntersectionObserver' in window) {
+//         const revealTargets = document.querySelectorAll(
+//             '.content-section .section-title, ' +
+//             '.content-section p, ' +
+//             '.content-section .btn-accent, ' +
+//             '.content-section .grid-2, ' +
+//             '.content-section .info-card, ' +
+//             '.content-section .map-embed'
+//         );
 
-        revealTargets.forEach((el, i) => {
-            el.classList.add('reveal');
-            el.style.transitionDelay = `${Math.min(i % 4, 3) * 90}ms`;
-        });
+//         revealTargets.forEach((el, i) => {
+//             el.classList.add('reveal');
+//             el.style.transitionDelay = `${Math.min(i % 4, 3) * 90}ms`;
+//         });
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+//         const observer = new IntersectionObserver((entries) => {
+//             entries.forEach(entry => {
+//                 if (entry.isIntersecting) {
+//                     entry.target.classList.add('is-visible');
+//                     observer.unobserve(entry.target);
+//                 }
+//             });
+//         }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
 
-        revealTargets.forEach(el => observer.observe(el));
-    }
-});
+//         revealTargets.forEach(el => observer.observe(el));
+//     }
+// });
 
 // 4. スクロールに応じたヘッダーの配色切り替え（Heroセクション判定）
     const header = document.querySelector('.site-header');
@@ -159,6 +159,12 @@ document.addEventListener('DOMContentLoaded', () => {
 // スライドショー
 // ========================================
 const wrapper = document.getElementById('slidesWrapper');
+
+// slidesWrapper が無いときは処理をストップさせる
+if (!wrapper) {
+  // 必要であればここで return して以降の処理を中断
+} else {
+
 const realSlides = wrapper.querySelectorAll('.slide.real');
 const dots = document.querySelectorAll('.dot');
 
@@ -296,6 +302,8 @@ initPosition();
 startAutoPlay();
 });
 
+} // if (!wrapper) の閉じ括弧
+
 // ==========================================
 // .hero 全体をピン留め対象（trigger）にして pin: true を設定し、end: "+=1000"（1000px分スクロールするまで）と指定
 // ==========================================
@@ -326,7 +334,7 @@ document.addEventListener('DOMContentLoaded', () => {
         y: -1000,      // 最終位置（左に300px動いた場所へ）
         scale: 1,
         opacity: 0,
-        ease: "power2.out",
+        ease: "none",
         duration: 0.1  // 1000px のうち「40%（＝400pxスクロール時点）」で完了させる
     }, 
     0.0
@@ -340,7 +348,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
         x: 0,      // 最終位置（左に300px動いた場所へ）
         opacity: 1,
-        ease: "power2.out",
+        ease: "none",
         duration: 0.4  // 1000px のうち「40%（＝400pxスクロール時点）」で完了させる
     }, 
     0
@@ -351,12 +359,12 @@ document.addEventListener('DOMContentLoaded', () => {
         {
         y: 200,
         opacity: 0,
-        ease: "power2.out"
+        ease: "none"
     }, 
     {
         y: 0,
         opacity: 1,
-        ease: "power2.out",
+        ease: "none",
         duration: 0.4
     }, 0);
 
@@ -366,81 +374,85 @@ document.addEventListener('DOMContentLoaded', () => {
     // background-ourのtopのアニメーション  
     const topOurTl = gsap.timeline({
         scrollTrigger: {
-        trigger: ".background-our",       // 固定する要素
-        start: "top center",       // heroの上端が画面の上端に達したらスタート
-        end: "+=300",          // 1000pxスクロールする間固定（ここで固定距離を調整）
-        pin: false,              // 画面に固定する
-        scrub: 2.5,            // スクロール量に動きを完全連動させる
-        // markers: true,       // 開発中に位置調整したい場合はコメントアウトを外す
+            trigger: ".background-our",
+            start: "top center",
+            end: "bottom center", // 開始（top center）から終了（bottom+600px）までを全体とする
+            scrub: 2.0,
+            // markers: true
         }
     });
 
-    topOurTl.fromTo(".background-our",
-    {
-        y: 0,
+    topOurTl
+    // 1つ目のアニメーション（top center 〜）
+    .to(".background-our", {
+        y: -300,
         opacity: 1,
-        ease: "power2.out"
-    }, 
-    {
-        y: -100,
-        opacity: 1,
-        ease: "power2.out",
+        ease: "none",
         duration: 1.2
-    }, 0);
-
-    // ==========================================
-    // background-ourのbottomのアニメーション  
-    const topOurBottomTl = gsap.timeline({
-        scrollTrigger: {
-        trigger: ".background-our",       // 固定する要素
-        start: "bottom bottom",       // heroの上端が画面の上端に達したらスタート
-        end: "+=600",          // 1000pxスクロールする間固定（ここで固定距離を調整）
-        pin: false,              // 画面に固定する
-        scrub: 2.0,            // スクロール量に動きを完全連動させる
-        // markers: true,       // 開発中に位置調整したい場合はコメントアウトを外す
-        }
+    })
+    // 2つ目のアニメーション（bottom bottom 〜）
+    .to(".background-our", {
+        y: -400,
+        opacity: 1,
+        ease: "none",
+        duration: 1.2
     });
 
-    topOurBottomTl.fromTo(".background-our",
-    {
-        y: 0,
-        opacity: 1,
-        ease: "power2.out"
-    }, 
-    {
-        y: -200,
-        opacity: 1,
-        ease: "power2.out",
-        duration: 1.2
-    }, 0);
-
     // ==========================================
 
     // ==========================================
-    // background-menuのアニメーション  
+    // background-menu の連続パララックスアニメーション
     const bgMenuTl = gsap.timeline({
+    scrollTrigger: {
+        trigger: ".background-menu",
+        start: "top bottom",     // 要素の上が画面の下に入ったらスタート
+        end: "bottom center",       // 要素の下が画面の上に抜けたら終了（全体のスクロール区間に合わせる）
+        scrub: 2.5,              // スクロールに滑らかに追従
+        // markers: true,        // 位置調整時はコメント解除
+    }
+    });
+
+    // 1つのタイムラインに順番に追加（キーフレームのように連続して動く）
+    bgMenuTl
+    // 1つ目の移動: y: 0 -> y: -200
+    .fromTo(".background-menu", 
+        { y: 0 }, 
+        { y: -200, ease: "none" }
+    )
+    // 2つ目の移動: y: -200 -> y: -400（前の移動が終わった直後に続く）
+    .to(".background-menu", 
+        { y: -500, ease: "none" }
+    );
+
+    // ==========================================
+
+    // ==========================================
+
+    const topInfoTl = gsap.timeline({
         scrollTrigger: {
-        trigger: ".background-menu",       // 固定する要素
-        start: "top bottom",       // heroの上端が画面の上端に達したらスタート
-        end: "+=600",          // 1000pxスクロールする間固定（ここで固定距離を調整）
-        pin: false,              // 画面に固定する
-        scrub: 2.5,            // スクロール量に動きを完全連動させる
-        // markers: true,       // 開発中に位置調整したい場合はコメントアウトを外す
+            trigger: ".background-info",
+            start: "top bottom",
+            end: "bottom+=600 bottom",
+            scrub: 2.0,
+            // markers: true
         }
     });
 
-    bgMenuTl.fromTo(".background-menu",
-    {
-        y: 0,
+    topInfoTl
+    // ① top center に達してから y: -100 へ
+    .to(".background-info", {
+        y: -300,
         opacity: 1,
-        ease: "power2.out"
-    }, 
-    {
-        y: -200,
-        opacity: 1,
-        ease: "power2.out",
+        ease: "none",
         duration: 1.2
-    }, 0);
+    })
+    // ② 続いて bottom bottom 付近で y: -200 へ
+    .to(".background-info", {
+        y: -300,
+        opacity: 1,
+        ease: "none",
+        duration: 1.2
+    });
 
     // ==========================================
 
@@ -461,12 +473,12 @@ document.addEventListener('DOMContentLoaded', () => {
         {
         yPercent: 5,
         scale: 1.1,
-        ease: "power2.out"
+        ease: "none"
     }, 
     {
         yPercent: -5,
         scale: 1.1,
-        ease: "power2.out",
+        ease: "none",
         duration: 0.4
     }, 0);
 
@@ -489,15 +501,44 @@ document.addEventListener('DOMContentLoaded', () => {
         {
         yPercent: 5,
         scale: 1.1,
-        ease: "power2.out"
+        ease: "none"
     }, 
     {
         yPercent: -5,
         scale: 1.1,
-        ease: "power2.out",
+        ease: "none",
         duration: 0.4
     }, 0);
+    
 
+    // ==========================================
+
+    // ==========================================
+
+    const infoCardTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".info-card",
+            start: "top bottom",
+            end: "bottom+=600 bottom",
+            scrub: 2.0,
+            // markers: true,
+        }
+    });
+
+    infoCardTl
+    .to(".info-card", {
+        y: -150,
+        opacity: 1,
+        ease: "none",
+        duration: 1.2
+    })
+    .to(".info-card", {
+        y: -200,
+        opacity: 1,
+        ease: "none",
+        duration: 1.2
+    });
+    
     // ==========================================
 
     // ==========================================
@@ -516,7 +557,7 @@ document.addEventListener('DOMContentLoaded', () => {
         gsap.to(img, {
             scale: 1.2,
             duration: 0.6,
-            ease: 'power2.out',
+            ease: 'none',
             overwrite: 'auto' // スクロールのtransformとscale指定がぶつかるのを自動調整
         });
         });
@@ -526,7 +567,7 @@ document.addEventListener('DOMContentLoaded', () => {
         gsap.to(img, {
             scale: 1.1,
             duration: 0.6,
-            ease: 'power2.out',
+            ease: 'none',
             overwrite: 'auto'
         });
         });
@@ -560,42 +601,3 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// ==========================================
-// Lenisの初期化
-// ==========================================
-const lenis = new Lenis({
-  duration: 1.2,      // スクロールの慣性（減速）の長さ（秒）。0.8〜1.5程度が心地よい
-  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // ぬるっと止まるイージング関数
-  smoothWheel: true,  // マウスホイールのスクロールを滑らかにする
-  wheelMultiplier: 1, // ホイールの移動量の倍率（大きくすると1回のスクロールで大きく動く）
-});
-
-//  毎フレーム Lenis を更新するループ（必須）
-function raf(time) {
-  lenis.raf(time);
-  requestAnimationFrame(raf);
-}
-requestAnimationFrame(raf);
-
-// GSAP ScrollTrigger と同期させる設定（※GSAPを使っている場合は必須）
-lenis.on('scroll', ScrollTrigger.update);
-
-gsap.ticker.add((time) => {
-  lenis.raf(time * 1000);
-});
-
-gsap.ticker.lagSmoothing(0);
-
-// ページ内リンク（アンカーリンク）へスムーズに移動させる
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    e.preventDefault();
-    const target = this.getAttribute('href');
-    if (target !== '#') {
-      lenis.scrollTo(target, {
-        offset: -80, // ヘッダーの高さを考慮して位置をずらす場合
-        duration: 1.5,
-      });
-    }
-  });
-});
