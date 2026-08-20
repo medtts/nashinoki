@@ -6,6 +6,10 @@
     <title>STORY | Coffee Base NASHINOKI</title>
     <link rel="icon" href="/assets/images/logo.svg" type="image/svg+xml">
     <link rel="icon" href="/assets/images/logo.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600&family=Zen+Maru+Gothic:wght@400;500&family=Cormorant:ital@1&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="../assets/css/style.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
@@ -20,6 +24,10 @@
             overflow: hidden;
         }
 
+        .story {
+            height: 100vh; 
+        }
+
         h2 {
             text-align: center;
         }
@@ -27,8 +35,7 @@
         /* セクション背景・レイアウト */
         .background-storyTop {
             position: relative;
-            margin-top: 0;
-            padding-top: 40px;
+            padding: 120px 0px 80px;
             width: 100%;
         }
 
@@ -105,10 +112,17 @@
             font-size: 0.75em;
         }
 
-        /* トップへ戻るボタン */
-        /* .to-top {
-            display: block;
-        } */
+        /* デフォルト（スマホ表示など）：pc-brは改行させない */
+        .pc-br {
+            display: none;
+        }
+
+        /* PCサイズ（例: 768px以上）のときだけ改行を有効にする */
+        @media screen and (min-width: 768px) {
+            .pc-br {
+                display: inline;
+            }
+        }
     </style>
 </head>
 <body>
@@ -125,7 +139,7 @@
                     <li><a href="../about/">ABOUT</a></li>
                     <li><a href="../story/" class="is-current">STORY</a></li>
                     <li><a href="../menu/">MENU</a></li>
-                    <li><a href="../index.html#access">ACCESS</a></li>
+                    <!-- <li><a href="../index.html#access">ACCESS</a></li> -->
                     <li><a href="../index.html#reservation" class="nav-btn">ご予約</a></li>
                 </ul>
             </nav>
@@ -135,7 +149,7 @@
     <main>
         <!-- Top Section -->
         <div class="background-storyTop">
-            <section class="content-section white-logo story-intro">
+            <section class="story content-section white-logo ">
                 <h1 class="section-title white">建物の記憶と名水が、心をほどく。</h1>
                 <p class="section-subtitle white">STORY OF WATER & ARCHITECTURE</p>
                 <p class="white story-intro-text">
@@ -151,9 +165,13 @@
             <section class="content-section">
                 <div class="content-inner">
                     <h2>京都三名水「染井の水」</h2>
+                    <p class="section-subtitle">WATER</p>
                     <p>
-                        京都三名水の中で唯一現存する「染井の水」。古くより御所の染所にも使われてきたこの湧き水は、雑味がなく、やわらかな甘みを含んでいます。<br>
-                        Coffee Base NASHINOKIでは、すべてのドリンクのベースにこの水を使用。命を吹き込まれた名水が、コーヒー豆本来の個性を優しく引き出します。
+                        京都三名水の中で唯一現存する「染井の水」。<br class="pc-br">
+                        古くより御所の染所にも使われてきたこの湧き水は、<br class="pc-br">
+                        雑味がなく、やわらかな甘みを含んでいます。<br><br>
+                        Coffee Base NASHINOKIでは、すべての飲み物に名水を使用。<br class="pc-br">
+                        澄み切った名水が、コーヒー豆本来の個性を優しく引き出します。
                     </p>
                     <img src="../assets/images/P8160968.JPG" alt="染井の水">
                 </div>
@@ -165,9 +183,13 @@
             <section class="content-section">
                 <div class="content-inner">
                     <h2>歴史的建築「旧春興殿」</h2>
+                    <p class="section-subtitle">ARCHITECTURE</p>
                     <p>
-                        大正期に宮中より梨木神社へと移築された歴史ある「旧春興殿」。かつて茶之湯が楽しまれたその趣ある意匠を極力残し、現代のコーヒー文化を発信する空間へと生まれ変わらせました。<br>
-                        床や間仕切り壁を再構築しつつも残された木の温もりが、慌ただしい日常を忘れさせ、あなたを深い静寂へといざないます。
+                        大正期に宮中より梨木神社へと移築された歴史ある「旧春興殿」。<br class="pc-br">
+                        かつて茶之湯が楽しまれたその趣ある意匠を極力残し、<br class="pc-br">
+                        現代のコーヒー文化を発信する空間へと生まれ変わらせました。<br><br>
+                        床や間仕切り壁を再構築しつつも残された木の温もりが、<br class="pc-br">
+                        慌ただしい日常を忘れさせ、あなたを深い静寂へといざないます。
                     </p>
                     <img src="../assets/images/hero.png" alt="旧春興殿の建築">
                 </div>
@@ -184,10 +206,10 @@
                 </div>
                 <nav class="footer-nav">
                     <a href="../index.html">TOP</a>
-                    <a href="about/">ABOUT</a>
-                    <a href="story/">STORY</a>
-                    <a href="menu/">MENU</a>
-                    <a href="#access">ACCESS</a>
+                    <a href="../about/">ABOUT</a>
+                    <a href="../story/"  class="is-current">STORY</a>
+                    <a href="../menu/">MENU</a>
+                    <!-- <a href="../index.html#access">ACCESS</a> -->
                 </nav>
                 <p class="copyright">&copy; Coffee Base NASHINOKI All Rights Reserved.</p>
             </div>
