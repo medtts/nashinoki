@@ -11,91 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600&family=Zen+Maru+Gothic:wght@400;500&family=Cormorant:ital@1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
 
-    <style>
-        /* ==========================================
-           ページ固有スタイル・インラインスタイルの整理
-        ========================================== */
-        
-        /* 1. パララックス用スタイル（元のHTML中盤から移動） */
-        .parallax-section {
-            position: relative;
-            max-width: 1000px;
-            margin: 0 auto;
-            background-color: transparent;
-        }
-        .parallax-mid-group {
-            position: absolute; 
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            z-index: -1; 
-            pointer-events: none; 
-            will-change: transform; 
-            overflow-x: hidden;
-        }
-        .mid-item {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(8px);
-            padding: 20px;
-            border-radius: 12px;
-        }
-        .item-1 { width: 20%; top: 30%; left: 0%; }
-        .item-2 { width: 20%; top: 60%; right: 0%; }
-
-        /* 2. 各要素に直接書かれていたインラインスタイルのクラス化 */
-        /* 余白・パディング調整 */
-        .mt-20 { margin-top: 20px; }
-        .mt-50 { margin-top: 50px; }
-        .mb-40 { margin-bottom: 40px; }
-        .p-0 { padding: 0; }
-        
-        /* テキスト・フォント調整 */
-        .font-sm { font-size: 0.75em; }
-        .text-center { text-align: center; }
-
-        /* セクション固有レイアウト */
-        .seat-guidance-images {
-            display: flex;
-            width: 100%;
-            height: 200px;
-        }
-        .map-iframe { border: 0; }
-        
-        /* SNS・お知らせセクション */
-        .sns-flex-container {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            text-align: center;
-            margin-bottom: 24px;
-        }
-        .qr-wrap { margin-bottom: 20px; }
-        .qr-img {
-            width: 200px;
-            display: block;
-            margin: 0 auto;
-        }
-
-        /* フッターセクション */
-        .footer-logo-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-        }
-        .footer-logo-icon {
-            width: 64px;
-            height: 64px;
-        }
-        .footer-logo-text-override {
-            font-size: 1em;
-            line-height: 1em;
-            color: #1A1A1A;
-        }
-    </style>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
     <!-- LenisのCDN -->
@@ -104,8 +19,7 @@
     <script src="assets/js/lenis.js" defer></script>
 </head>
 <body>
-    
-    <!-- 1. HEADER -->
+    <!-- HEADER -->
     <header class="site-header top">
         <div class="header-inner">
             <a href="index.html" class="site-logo">Coffee Base NASHINOKI</a>
@@ -125,10 +39,11 @@
         </div>
     </header>
 
+    <!-- main -->
     <main>
-        <!-- 1. HERO -->
+        <!-- HERO -->
         <section id="hero" class="hero">
-            <!-- 動画要素（自動再生・ループ・消音・インライン再生） -->
+            <!-- 動画（自動再生・ループ・消音・インライン再生） -->
             <video class="hero-video" autoplay loop muted playsinline>
                 <source src="assets/images/hero.mp4" type="video/mp4">
             </video>
@@ -150,237 +65,224 @@
             </div>
         </section>
 
-        <!-- 背景 -->
+        <!-- background-our -->
         <div class="background-our">
+            <!-- CONCEPT -->
+            <section class="content-section" id="concept">
+                <h2 class="section-title">京の歴史と名水が、心を潤す。</h2>
+                <p class="section-subtitle">CONCEPT</p>
+                <p>
+                    追われ続ける日常から、少しだけ離れてみませんか。<br>
+                    「Coffee Base NASHINOKI」があるのは、京都御所の東端に佇む梨木神社。<br>
+                    都会の喧騒を忘れさせる静寂のなかで、あなた自身を取り戻すための隠れ家です。
+                </p>
+                <div class="btn-accent-wrap"><a href="about/" class="btn-accent">ブランド理念と他店舗について</a></div>
+            </section>
 
-        <!-- 2. CONCEPT -->
-        <section class="content-section" id="concept">
-            <h2 class="section-title">京の歴史と名水が、心を潤す。</h2>
-            <p class="section-subtitle">CONCEPT</p>
-            <p>
-                追われ続ける日常から、少しだけ離れてみませんか。<br>
-                「Coffee Base NASHINOKI」があるのは、京都御所の東端に佇む梨木神社。<br>
-                都会の喧騒を忘れさせる静寂のなかで、あなた自身を取り戻すための隠れ家です。
-            </p>
-            <div class="btn-accent-wrap"><a href="about/" class="btn-accent">ブランド理念と他店舗について</a></div>
-        </section>
-
-        <!-- 3. STORY OF WATER & ARCHITECTURE -->
-        <section class="story-section content-section section-alt">
-            <h2 class="section-title">名水と建築の背景</h2>
-            <p class="section-subtitle">FAMOUS WATER & ARCHITECTURE</p>
-            <div class="grid-2">
-                <div class="story-img-wrapper"><img src="assets/images/PXL_20260816_024831171_exported_2603_1786965456561.jpg" alt="染井の水"></div>
-                <div class="grid-text">
-                    <h3>京都三名水「染井の水」と旧春興殿</h3>
-                    <p>唯一現存する名水「染井の水」のまろやかな口あたりと、大正期に宮中より移築された歴史的建築「旧春興殿」の温もり。その深い背景を紐解きます。</p>
-                    <div class="btn-accent-wrap btn-accent-wrap-left"><a href="story/" class="btn-accent">STORYページで詳しく見る</a></div>
+            <!-- STORY OF WATER & ARCHITECTURE -->
+            <section class="story-section content-section section-alt">
+                <h2 class="section-title">名水と建築の背景</h2>
+                <p class="section-subtitle">FAMOUS WATER & ARCHITECTURE</p>
+                <div class="grid-2">
+                    <div class="story-img-wrapper"><img src="assets/images/PXL_20260816_024831171_exported_2603_1786965456561.jpg" alt="染井の水"></div>
+                    <div class="grid-text">
+                        <h3>京都三名水「染井の水」と旧春興殿</h3>
+                        <p>唯一現存する名水「染井の水」のまろやかな口あたりと、大正期に宮中より移築された歴史的建築「旧春興殿」の温もり。その深い背景を紐解きます。</p>
+                        <div class="btn-accent-wrap btn-accent-wrap-left"><a href="story/" class="btn-accent">STORYページで詳しく見る</a></div>
+                    </div>
                 </div>
-            </div>
-        </section>
-
+            </section>
         <!-- /background-our -->
         </div>
+
+        <!-- /background-gallery -->
         <div class="background-gallery">
+            <!-- SPACE & ATMOSPHERE -->
+            <section class="content-section white-logo">
+                <h2 class="section-title white">境内の静けさに身を委ねて</h2>
+                <p class="section-subtitle white">SPACE & ATMOSPHERE</p>
+                <p class="white">いつでもここでは、あなたを急かすものはありません。木漏れ日の差す縁側や、風に揺れる境内の緑とともに、ただ心地よい時間をお過ごしください。</p>
+                <div class="slideshow-container">
+                    <div class="slides-wrapper" id="slidesWrapper">
+                        <!-- 【クローン】最後の画像 -->
+                        <div class="slide clone">
+                        <img src="assets/images/PXL_20260816_024817655.MP.jpg" alt="店舗正面">
+                        </div>
 
-        <!-- 5. SPACE & ATMOSPHERE -->
-        <section class="content-section white-logo">
-            <h2 class="section-title white">境内の静けさに身を委ねて</h2>
-            <p class="section-subtitle white">SPACE & ATMOSPHERE</p>
-            <p class="white mb-40">いつでもここでは、あなたを急かすものはありません。木漏れ日の差す縁側や、風に揺れる境内の緑とともに、ただ心地よい時間をお過ごしください。</p>
-            <div class="slideshow-container">
-                <div class="slides-wrapper" id="slidesWrapper">
-                    <!-- 【クローン】最後の画像 -->
-                    <div class="slide clone">
-                    <img src="assets/images/PXL_20260816_024817655.MP.jpg" alt="境内と縁側">
+                        <!-- 【実物】画像群 (全3枚) -->
+                        <div class="slide real">
+                        <img src="assets/images/PXL_20260816_024624401.jpg" alt="縁側">
+                        </div>
+                        <div class="slide real">
+                        <img src="assets/images/P8160967.JPG" alt="コーヒーコース特別室">
+                        </div>
+                        <div class="slide real">
+                        <img src="assets/images/PXL_20260816_024817655.MP.jpg" alt="店舗正面">
+                        </div>
+
+                        <!-- 【クローン】1枚目の画像 -->
+                        <div class="slide clone">
+                        <img src="assets/images/PXL_20260816_024624401.jpg" alt="縁側">
+                        </div>
                     </div>
 
-                    <!-- 【本物】画像群 (全3枚) -->
-                    <div class="slide real">
-                    <img src="assets/images/PXL_20260816_024624401.jpg" alt="境内と縁側">
-                    </div>
-                    <div class="slide real">
-                    <img src="assets/images/P8160967.JPG" alt="店舗の佇まい">
-                    </div>
-                    <div class="slide real">
-                    <img src="assets/images/PXL_20260816_024817655.MP.jpg" alt="境内と縁側">
-                    </div>
-
-                    <!-- 【クローン】1枚目の画像 -->
-                    <div class="slide clone">
-                    <img src="assets/images/PXL_20260816_024624401.jpg" alt="境内と縁側">
+                    <!-- ドット（枚数分用意） -->
+                    <div class="dots-container">
+                        <span class="dot active"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
                     </div>
                 </div>
 
-                <!-- ドット（本物の枚数＝3個分用意） -->
-                <div class="dots-container">
-                    <span class="dot active"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                </div>
-            </div>
-
-            <!-- 席の案内 -->
-            <!-- <div class="seat-guidance-images">
-                <img src="assets/images/PXL_20260816_024624401.jpg" alt="縁側">
-                <img src="assets/images/P8160969.JPG" alt="庭のベンチ">
-                <img src="assets/images/P8160961.JPG" alt="離れの茶室">
-            </div> -->
-        </section>
-
+                <!-- 席の案内 -->
+                <!-- <div class="seat-guidance-images">
+                    <img src="assets/images/PXL_20260816_024624401.jpg" alt="縁側">
+                    <img src="assets/images/P8160969.JPG" alt="庭のベンチ">
+                    <img src="assets/images/P8160961.JPG" alt="離れの茶室">
+                </div> -->
+            </section>
+        <!-- /background-gallery -->
         </div>
-        <!-- 背景 -->
+
+        <!-- background-menu -->
         <div class="background-menu">
-
-        <!-- 6. MENU -->
-        <section class="menu-section content-section section-alt">
-            <h2 class="section-title">すっと身体にしみ入る、透明な一杯。</h2>
-            <p class="section-subtitle">RECOMMENDED MENU</p>
-            <p>名水の個性を活かした水出しコーヒーや、その日の気分に寄り添うシングルオリジンのドリップ。今のあなたに合う一杯を見つける「豆診断」もご用意しています。</p>
-            <div class="grid-2">
-                <!-- RECOMMENDED -->
-                <div class="menu-wrap grid-text p-0">
-                    <h2 class="menu-category">RECOMMENDED</h2>
-                    <ul class="menu-list">
-                        <li><span>水出しコーヒー ブレンド (アイスのみ)</span><span>660円</span></li>
-                        <li><span>＋栗まんじゅうセット</span><span>1,030円</span></li>
-                        <div class="btn-accent-wrap btn-accent-wrap-left"><a href="menu/" class="btn-accent mt-20">すべてのメニューを見る</a></div>
-                    </ul>
+            <!-- MENU -->
+            <section class="menu-section content-section section-alt">
+                <h2 class="section-title">すっと身体にしみ入る、透明な一杯。</h2>
+                <p class="section-subtitle">RECOMMENDED MENU</p>
+                <p>名水の個性を活かした水出しコーヒーや、その日の気分に寄り添うシングルオリジンのドリップ。今のあなたに合う一杯を見つける「豆診断」もご用意しています。</p>
+                <div class="grid-2">
+                    <!-- RECOMMENDED -->
+                    <div class="menu-wrap grid-text" >
+                        <h2 class="menu-category">RECOMMENDED</h2>
+                        <ul class="menu-list">
+                            <li><span>水出しコーヒー ブレンド (アイスのみ)</span><span>660円</span></li>
+                            <li><span>＋栗まんじゅうセット</span><span>1,030円</span></li>
+                            <div class="btn-accent-wrap btn-accent-wrap-left"><a href="menu/" class="btn-accent mt-20">すべてのメニューを見る</a></div>
+                        </ul>
+                    </div>
+                
+                    <div class="menu-img-wrapper"><img src="assets/images/coldbrew.jpg" alt=""></div>
+                
                 </div>
-            
-                <div class="menu-img-wrapper"><img src="assets/images/coldbrew.jpg" alt=""></div>
-             
-            </div>
-        </section>
-
+            </section>
         <!-- /background-menu -->
         </div>
 
-        <!-- 背景 -->
+        <!-- background-course -->
         <div class="background-course">
-
-        <!-- 4. COFFEE COURSE -->
-        <section class="course-section content-section white-logo" id="reservation">
-            <h2 class="section-title white">あなたをいたわる、贅沢な時間。</h2>
-            <p class="section-subtitle white">COFFEE COURSE</p>
-            <p class="white">
-                北山杉を贅沢に使用した静謐な特別室にて、完全予約制の「コーヒーコース」をご用意しております。
-                レストランのコース料理のように60分〜90分かけて、複数のコーヒーを順番にご提供。一種類の豆が抽出方法でどう表情を変えるか、京都の老舗和菓子とともに五感を澄まして味わっていただけます。
-            </p>
-            <div class="btn-accent-wrap"><a href="https://ec.travel.jr-central.co.jp/tp/optionalFacilities/6332M02/plans?lang=ja" target="_blank" rel="noopener" class="btn-accent white">特別室コーヒーコースを予約する</a></div>
-        </section>
-
+            <!-- COFFEE COURSE -->
+            <section class="course-section content-section white-logo" id="reservation">
+                <h2 class="section-title white">あなたをいたわる、贅沢な時間。</h2>
+                <p class="section-subtitle white">COFFEE COURSE</p>
+                <p class="white">
+                    北山杉を贅沢に使用した静謐な特別室にて、完全予約制の「コーヒーコース」をご用意しております。
+                    レストランのコース料理のように60分〜90分かけて、複数のコーヒーを順番にご提供。一種類の豆が抽出方法でどう表情を変えるか、京都の老舗和菓子とともに五感を澄まして味わっていただけます。
+                </p>
+                <div class="btn-accent-wrap"><a href="https://ec.travel.jr-central.co.jp/tp/optionalFacilities/6332M02/plans?lang=ja" target="_blank" rel="noopener" class="btn-accent white">特別室コーヒーコースを予約する</a></div>
+            </section>
         <!-- /background-course -->
         </div>
 
         <!-- background-info -->
         <div class="background-info">
-
-        <!-- 7. ACCESS & INFO -->
-        <section class="access-section content-section section-alt" id="access">
-            <h2 class="section-title">アクセス・店舗情報</h2>
-            <p class="section-subtitle">ACCESS & INFO</p>
-            <p>
-                京都御所のすぐ東側、静かな鳥居をくぐり、まっすぐな参道を進んだ左手にございます。少し疲れたときは、いつでもお気軽にお立ち寄りください。
-            </p>
-            <div class="btn-accent-wrap"><a href="about/" class="btn-accent mt-20">店舗情報を詳しく見る</a></div>
-        </section>
-
+            <!-- ACCESS & INFO -->
+            <section class="access-section content-section section-alt" id="access">
+                <h2 class="section-title">アクセス・店舗情報</h2>
+                <p class="section-subtitle">ACCESS & INFO</p>
+                <p>
+                    京都御所のすぐ東側、静かな鳥居をくぐり、まっすぐな参道を進んだ左手にございます。少し疲れたときは、いつでもお気軽にお立ち寄りください。
+                </p>
+                <div class="btn-accent-wrap"><a href="about/" class="btn-accent mt-20">店舗情報を詳しく見る</a></div>
+            </section>
         <!-- /background-info -->
         </div>
 
-            <div class="info-card">
-                
-                <div class="info-grid">
-                    <div class="info-left">
-                        <!-- Googleマップ埋め込み -->
-                        <div class="map-embed">
-                            <iframe 
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3267.2960396631415!2d135.76718689999998!3d35.0243232!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6001097e526159ad%3A0xcceb751633385e30!2sCoffee%20Base%20NASHINOKI!5e0!3m2!1sja!2sjp!4v1786550634815!5m2!1sja!2sjp" 
-                                width="100%" 
-                                height="100%" 
-                                class="map-iframe"
-                                allowfullscreen="" 
-                                loading="lazy" 
-                                referrerpolicy="strict-origin-when-cross-origin">
-                            </iframe>
-                        </div>
+        <div class="info-card">
+            <div class="info-grid">
+                <div class="info-left">
+                    <!-- Googleマップ埋め込み -->
+                    <div class="map-embed">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3267.2960396631415!2d135.76718689999998!3d35.0243232!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6001097e526159ad%3A0xcceb751633385e30!2sCoffee%20Base%20NASHINOKI!5e0!3m2!1sja!2sjp!4v1786550634815!5m2!1sja!2sjp" 
+                            width="100%" 
+                            height="100%" 
+                            class="map-iframe"
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="strict-origin-when-cross-origin">
+                        </iframe>
                     </div>
+                </div>
 
-                    <div class="info-right">
-                        <div></div>
-                        <div class="noren">
-                            <img src="assets/images/logo.svg" alt="">
-                            <span class="text-center"><span class="font-sm">COFFEE BASE</span><br>NASHINOKI</span>
-                            <img src="assets/images/kamon.svg" alt="">
-                        </div>
-                        <dl class="info-list">
-                            <div class="info-item">
-                                <dt>営業時間</dt>
-                                <dd>10:00〜17:00</dd>
-                            </div>
-                            <div class="info-item">
-                                <dt>住  所</dt>
-                                <dd>京都府京都市上京区染殿町680 梨木神社境内</dd>
-                            </div>
-                            <div class="info-item">
-                                <dt>電 話</dt>
-                                <dd>
-                                    <a href="tel:0756009393">075-600-9393</a>
-                                </dd>
-                            </div>
-                        </dl>
+                <div class="info-right">
+                    <div></div>
+                    <div class="noren">
+                        <img src="assets/images/logo.svg" alt="">
+                        <span><span class="footer-logo-sub">COFFEE BASE</span><br>NASHINOKI</span>
+                        <img src="assets/images/kamon.svg" alt="">
                     </div>
+                    <dl class="info-list">
+                        <div class="info-item">
+                            <dt>営業時間</dt>
+                            <dd>10:00〜17:00</dd>
+                        </div>
+                        <div class="info-item">
+                            <dt>住  所</dt>
+                            <dd>京都府京都市上京区染殿町680 梨木神社境内</dd>
+                        </div>
+                        <div class="info-item">
+                            <dt>電 話</dt>
+                            <dd>
+                                <a href="tel:0756009393">075-600-9393</a>
+                            </dd>
+                        </div>
+                    </dl>
                 </div>
             </div>
+        </div>
 
-    <!-- /background-info -->
-    </div>    
-
-    <!-- background-sns -->
-    <div class="background-sns">   
-
-        <!-- 8. SNS & NEWS -->
-        <section class="sns-section content-section white-logo">
-            <h2 class="section-title white">お知らせ・通信販売</h2>
-            <p class="section-subtitle white">SNS & SHOP</p>
-            <p class="white" style="max-width: 600px; margin-bottom: 60px;">開店情報や境内の四季の移り変わり、季節の和菓子、最新の豆の入荷情報はInstagramにて日々発信しています。</p>
-            
-            <div class="sns-flex-container" >
-                <!-- Instagramエリア -->
-                <div>
-                    <div class="qr-wrap"><img src="assets/images/coffeebase.nashinoki_qr.png" class="qr-img" alt=""></div>
-                    <div class="btn-accent-wrap">
-                        <a href="https://www.instagram.com/coffeebase.nashinoki/" target="_blank" rel="noopener" class="btn-accent white">Instagram</a>
-                    </div>
-                </div>
+        <!-- background-sns -->
+        <div class="background-sns">   
+            <!-- SNS & SHOP -->
+            <section class="sns-section content-section white-logo">
+                <h2 class="section-title white">お知らせ・通信販売</h2>
+                <p class="section-subtitle white">SNS & SHOP</p>
+                <p class="white" style="max-width: 600px; margin-bottom: 60px;">開店情報や境内の四季の移り変わり、季節の和菓子、最新の豆の入荷情報はInstagramにて日々発信しています。</p>
                 
-                <!-- Facebookエリア -->
-                <div>
-                    <div class="qr-wrap"><img src="assets/images/coffeebase.nashinoki_qr_fb.png" class="qr-img" alt=""></div>
-                    <div class="btn-accent-wrap">
-                        <a href="https://www.facebook.com/coffeebasenashinoki" target="_blank" rel="noopener" class="btn-accent white">Facebook</a>
+                <div class="sns-flex-container" >
+                    <!-- Instagramエリア -->
+                    <div>
+                        <div class="qr-wrap"><img src="assets/images/coffeebase.nashinoki_qr.png" class="qr-img" alt=""></div>
+                        <div class="btn-accent-wrap">
+                            <a href="https://www.instagram.com/coffeebase.nashinoki/" target="_blank" rel="noopener" class="btn-accent white">Instagram</a>
+                        </div>
                     </div>
-                </div>
-            </div>            
-            
-            <p class="white" style="margin: 60px auto 20px;">Coffee Base KANONDOで自家焙煎した豆やグッズを<br>以下のサイトで通信販売しています。</p>
-            <div class="btn-accent-wrap"><a href="https://kanondo.theshop.jp/" target="_blank" rel="noopener" class="btn-accent white">SHOP</a></div>
-        </section>
-
-    <!-- /background-sns -->
-    </div>    
-
+                    
+                    <!-- Facebookエリア -->
+                    <div>
+                        <div class="qr-wrap"><img src="assets/images/coffeebase.nashinoki_qr_fb.png" class="qr-img" alt=""></div>
+                        <div class="btn-accent-wrap">
+                            <a href="https://www.facebook.com/coffeebasenashinoki" target="_blank" rel="noopener" class="btn-accent white">Facebook</a>
+                        </div>
+                    </div>
+                </div>            
+                
+                <p class="white" style="margin: 60px auto 20px;">Coffee Base KANONDOで自家焙煎した豆やグッズを<br>以下のサイトで通信販売しています。</p>
+                <div class="btn-accent-wrap"><a href="https://kanondo.theshop.jp/" target="_blank" rel="noopener" class="btn-accent white">SHOP</a></div>
+            </section>
+        <!-- /background-sns -->
+        </div>    
     </main>
 
-    <!-- 9. FOOTER -->
+    <!-- FOOTER -->
     <footer class="site-footer">
         <div class="footer-inner">
-            <div class="footer-logo-container">
-                <img src="assets/images/logo.svg" class="footer-logo-icon" alt="">
-                <span class="site-logo footer-logo-text-override">
-                <span class="font-sm">COFFEE BASE</span><br>NASHINOKI</span>
-                <img src="assets/images/kamon.svg" class="footer-logo-icon" alt="">
+            <div class="footer-logo-wrapper">
+                <img src="../assets/images/logo.svg" class="footer-logo-icon" alt="COFFEE_BASE_logo">
+                <span class="site-logo footer-logo-title">
+                <span class="footer-logo-sub">COFFEE BASE</span><br>NASHINOKI</span>
+                <img src="../assets/images/kamon.svg" class="footer-logo-icon" alt="Kamon">
             </div>
             <nav class="footer-nav">
                 <a href="index.html" class="is-current">TOP</a>
@@ -392,7 +294,6 @@
             <p class="copyright">&copy; Coffee Base NASHINOKI All Rights Reserved.</p>
         </div>
     </footer>
-    
 
     <!-- トップに戻るボタン -->
     <button class="to-top" id="js-to-top" aria-label="ページトップに戻る"><img src="assets/images/logo.svg" alt=""><p>TOP</p></button>
