@@ -117,6 +117,52 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
-    // ==========================================
+// ==========================================
+// 日本地図
+// ==========================================
+const maps = [ "../assets/images/map-mobile.svg" ]
+const containers = document.querySelectorAll( '.map' )
+const targetPrefs = [ "tokyo", "shiga", "kyoto", "osaka" ]
 
-    // ==========================================
+maps.forEach( async ( map, index ) => {
+    const res = await fetch( map )
+    if ( res.ok ) {
+        const svg = await res.text()
+        containers[ index ].innerHTML = svg
+        const prefs = document.querySelectorAll( '.geolonia-svg-map .prefecture' )
+
+        prefs.forEach( ( pref ) => {
+            const isTarget = targetPrefs.some( target => pref.classList.contains( target ) )
+
+            if ( isTarget ) {
+                pref.addEventListener( 'mouseover', ( event ) => {
+                    event.currentTarget.style.fill = "#5A7352"
+                } )
+                pref.addEventListener( 'mouseleave', ( event ) => {
+                    event.currentTarget.style.fill = ""
+                } )
+
+                pref.addEventListener( 'click', ( event ) => {
+                    const matchedTarget = targetPrefs.find( target => event.currentTarget.classList.contains( target ) )
+                    if ( matchedTarget ) {
+                        const targetSection = document.getElementById( `area-${matchedTarget}` )
+                        if ( targetSection ) {
+                            const rect = targetSection.getBoundingClientRect()
+                            const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+                            const targetY = rect.top + scrollTop - 300
+
+                            window.scrollTo({
+                                top: targetY,
+                                behavior: 'smooth'
+                            })
+                        }
+                    }
+                } )
+                pref.style.cursor = 'pointer'
+            } else {
+                pref.style.cursor = 'default'
+                pref.style.pointerEvents = 'none'
+            }
+        } )
+    }
+} )
