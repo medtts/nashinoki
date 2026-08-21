@@ -11,108 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600&family=Zen+Maru+Gothic:wght@400;500&family=Cormorant:ital@1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/style.css">
 
-    <style>
-        main {
-            width: 100%;
-            overflow: hidden;
-        }
-        .menu-sub {
-            margin-top: 40px;
-            margin-bottom: 0px;
-            text-align: left !important;
-        }
-        .background-water {
-            position: relative;
-            padding: 80px 0px 80px;
-            width: 100%;
-            border-radius: 20px;
-        }
-        .background-menus,
-        .background-details {
-            position: relative;
-            padding: 0px 0px 80px;
-            width: 100%;
-            border-radius: 20px;
-            background-color: var(--color-white);
-        }
-        .background-chart,
-        .background-finder {
-            position: relative;
-            padding: 0px 0px 80px;
-            width: 100%;
-            border-radius: 20px;
-
-            background-color: var(--color-paper);
-        }
-        
-        .background-chart {
-            top: -220px;
-        }
-        .background-details {
-            top: -400px;
-        }
-        .background-finder {
-            border-radius: 20px 20px 0 0;
-            /* background-color: var(--color-moss); */
-            top: -840px;
-            /* bottom: -820px; */
-            
-            /* margin-bottom: -12px;  */
-            margin-bottom: -920px;
-            z-index: 2;
-        }
-        .menu-wrap {
-            margin-bottom: 60px;
-        }
-        .site-footer {
-            position: relative;
-            background-color: var(--color-white);
-            color: var(--color-ink);
-            padding: 64px 24px 40px;
-            border-radius: 12px 12px 0 0;
-            text-align: center;
-            /* background-finderの下に潜り込ませる、または上方向へ12pxずらす */
-            /* margin-top: -832px; */
-            z-index: 1; 
-        }
-
-        #flavorTooltip {
-        position: fixed;   /* 画面基準で固定（レイアウトの高さ計算から外す） */
-        top: 0;
-        left: 0;
-        margin: 0;         /* 余計な外側余白をリセット */
-        pointer-events: none; /* マウスを邪魔しない */
-        z-index: 9999;     /* 最前面に表示 */
-        opacity: 0;
-        visibility: hidden; /* アクティブでない時は完全に消す */
-        transition: opacity 0.2s ease, visibility 0.2s ease;
-        }
-
-        #flavorTooltip.is-active {
-        opacity: 1;
-        visibility: visible;
-        }
-        /* デフォルト（スマホ表示など）：pc-brは改行させない */
-        .pc-br {
-            display: none;
-        }
-
-        /* PCサイズ（例: 768px以上）のときだけ改行を有効にする */
-        @media screen and (min-width: 768px) {
-            .pc-br {
-                display: inline;
-            }
-        }
-        
-        /* main全体、または該当のセクションで外へのみ出しを抑止 */
-        .page-container,
-        .content-section,
-        #coffee-finder-section {
-            position: relative; /* 子要素の基準にする */
-            overflow: hidden;   /* はみ出た背景要素をカットする */
-        }
-    </style>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
     <!-- LenisのCDN -->
@@ -177,7 +75,7 @@
 
         <h1 class="section-title">お品書き</h1>
         <p class="section-subtitle">MENU</p>
-        <p class="story-intro-text">こだわりの名水で淹れる、至福の一杯。</p>
+        <p>こだわりの名水で淹れる、至福の一杯。</p>
             
             <!-- RECOMMENDED -->
             <div class="menu-wrap">
@@ -185,7 +83,7 @@
                 <ul class="menu-list">
                     <p class="menu-sub">Cold Brew (Iced Only)</p>
                     <li><span>水出しコーヒー ブレンド</span><span>660</span></li>
-                    <li><span>＋栗まんじゅうセット</span><span>1,030</span></li>
+                    <li><span>＋栗まんじゅうセット</span><span>1030</span></li>
                 </ul>
             </div>
 
@@ -275,7 +173,7 @@
         <section class="chart-section content-section id="beans-chart">
             <h2 class="section-title">シングル・スペシャリティ</h2>
             <p class="section-subtitle">SINGLE SPECIALTY BEANS</p>
-            <p class="story-intro-text">10種類の豆の中から、お好みの１杯をお選びいただけます。</p>
+            <p>10種類の豆の中から、お好みの１杯をお選びいただけます。</p>
 
             <div class="flavor-chart-container">
                 <!-- 軸ラベル -->
@@ -390,8 +288,8 @@
 
         <!-- 2. 豆の詳細リストセクション -->
         <section class="beans-section content-section" id="beans-details">
-            <h2 class="section-title">BEAN DETAILS</h2>
-            <p class="section-subtitle">銘柄詳細</p>
+            <h2 class="section-title">コーヒー豆の詳細</h2>
+            <p class="section-subtitle">BEAN DETAILS</p>
 
             <ul class="bean-details-list" style="max-width: 800px; margin: 0 auto; text-align: left;">
                 
@@ -472,9 +370,9 @@
 
         <!-- 豆診断セクション -->
         <section class="content-section" id="coffee-finder-section">
-            <h2 class="section-title">COFFEE FINDER</h2>
-            <p class="section-subtitle">あなたに寄り添う一杯を見つける</p>
-
+            <h2 class="section-title">コーヒー豆診断</h2>
+            <p class="section-subtitle">COFFEE FINDER</p>
+            <p>あなたの気分に寄り添う一杯を見つける、コーヒー豆診断です。</p>
             <div class="finder-box" id="coffee-finder">
                 
                 <!-- ステップ1：Q1（4択：カフェインレス分岐を追加） -->
@@ -506,24 +404,24 @@
             </div>
         </section>
 
-            <footer class="site-footer">
-        <div class="footer-inner">
-            <div style="display: flex; align-items: center; justify-content: center; gap: 20px;">
-                <img src="../assets/images/logo.svg" style="width: 64px; height: 64px;">
-                <span class="site-logo" style="font-size: 1em; line-height: 1em; color: #1A1A1A;">
-                <span style="font-size: 0.75em;">COFFEE BASE</span><br>NASHINOKI</span>
-                <img src="../assets/images/kamon.svg" style="width: 64px; height: 64px;">
+        <footer class="site-footer">
+            <div class="footer-inner">
+                <div class="footer-logo-wrapper">
+                    <img src="../assets/images/logo.svg" class="footer-logo-icon" alt="COFFEE_BASE_logo">
+                    <span class="site-logo footer-logo-title">
+                    <span class="footer-logo-sub">COFFEE BASE</span><br>NASHINOKI</span>
+                    <img src="../assets/images/kamon.svg" class="footer-logo-icon" alt="Kamon">
+                </div>
+                <nav class="footer-nav">
+                    <a href="../index.html">TOP</a>
+                    <a href="../about/">ABOUT</a>
+                    <a href="../story/">STORY</a>
+                    <a href="../menu/" class="is-current">MENU</a>
+                    <!-- <a href="../index.html#access">ACCESS</a> -->
+                </nav>
+                <p class="copyright">&copy; Coffee Base NASHINOKI All Rights Reserved.</p>
             </div>
-            <nav class="footer-nav">
-                <a href="../index.html">TOP</a>
-                <a href="../about/">ABOUT</a>
-                <a href="../story/">STORY</a>
-                <a href="../menu/"  class="is-current">MENU</a>
-                <!-- <a href="../index.html#access">ACCESS</a> -->
-            </nav>
-            <p class="copyright">&copy; Coffee Base NASHINOKI All Rights Reserved.</p>
-        </div>
-    </footer>
+        </footer>
 
     </main>
 

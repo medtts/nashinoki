@@ -18,112 +18,6 @@
     <script src="../assets/js/story.js" defer></script>
     <script src="../assets/js/lenis.js" defer></script>
 
-    <style>
-        main {
-            width: 100%;
-            overflow: hidden;
-        }
-
-        .story {
-            height: 100vh; 
-        }
-
-        h2 {
-            text-align: center;
-        }
-
-        /* セクション背景・レイアウト */
-        .background-storyTop {
-            position: relative;
-            padding: 120px 0px 80px;
-            width: 100%;
-        }
-
-        .background-storyWater {
-            position: relative;
-            padding: 0 0 80px;
-            width: 100%;
-            border-radius: 20px;
-            background-color: var(--color-white);
-        }
-
-        .background-storyArchitecture {
-            position: relative;
-            padding: 0 0 80px;
-            width: 100%;
-            border-radius: 20px;
-            background-color: var(--color-paper);
-            margin-top: -100px;
-            margin-bottom: -220px;
-        }
-
-        /* イントロ部分の調整 */
-        .story-intro {
-            text-align: center;
-            max-width: 700px;
-            margin: 40px auto 80px;
-        }
-
-        .story-intro-text {
-            text-align: center;
-            margin-top: 24px;
-            line-height: 1.8;
-            color: var(--color-ink-soft);
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* コンテンツ内の余白 */
-        .content-inner {
-            margin-top: 0px;
-        }
-
-        /* フッター */
-        .site-footer {
-            position: relative;
-            background-color: var(--color-white);
-            color: var(--color-ink);
-            padding: 64px 24px 40px;
-            border-radius: 12px 12px 0 0;
-            text-align: center;
-            z-index: 1;
-        }
-
-        .footer-logo-wrapper {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .footer-logo-icon {
-            width: 64px;
-            height: 64px;
-        }
-
-        .footer-logo-title {
-            font-size: 1em;
-            line-height: 1em;
-            color: #1A1A1A;
-        }
-
-        .footer-logo-sub {
-            font-size: 0.75em;
-        }
-
-        /* デフォルト（スマホ表示など）：pc-brは改行させない */
-        .pc-br {
-            display: none;
-        }
-
-        /* PCサイズ（例: 768px以上）のときだけ改行を有効にする */
-        @media screen and (min-width: 768px) {
-            .pc-br {
-                display: inline;
-            }
-        }
-    </style>
 </head>
 <body>
 
@@ -149,10 +43,10 @@
     <main>
         <!-- Top Section -->
         <div class="background-storyTop">
-            <section class="story content-section white-logo ">
+            <section class="story-top-section content-section white-logo ">
                 <h1 class="section-title white">建物の記憶と名水が、心をほどく。</h1>
                 <p class="section-subtitle white">STORY OF WATER & ARCHITECTURE</p>
-                <p class="white story-intro-text">
+                <p class="white">
                     京都三名水の一つ「染井」がもたらす、清らかでやわらかな珈琲の味わい。<br class="pc-br">
                     そして、宮中より受け継がれた歴史的建築「旧春興殿」が紡ぐ静謐な時間。<br>
                     その二つが重なり合う場所で、私たちは特別なひとときをお届けします。
@@ -163,7 +57,7 @@
         <!-- Water Section -->
         <div class="background-storyWater">
             <section class="content-section">
-                <div class="content-inner">
+                <div>
                     <h2>京都三名水「染井の水」</h2>
                     <p class="section-subtitle">WATER</p>
                     <p>
@@ -181,7 +75,7 @@
         <!-- Architecture Section -->
         <div class="background-storyArchitecture">
             <section class="content-section">
-                <div class="content-inner">
+                <div>
                     <h2>歴史的建築「旧春興殿」</h2>
                     <p class="section-subtitle">ARCHITECTURE</p>
                     <p>
@@ -199,10 +93,10 @@
         <footer class="site-footer">
             <div class="footer-inner">
                 <div class="footer-logo-wrapper">
-                    <img src="../assets/images/logo.svg" class="footer-logo-icon" alt="">
+                    <img src="../assets/images/logo.svg" class="footer-logo-icon" alt="COFFEE_BASE_logo">
                     <span class="site-logo footer-logo-title">
                     <span class="footer-logo-sub">COFFEE BASE</span><br>NASHINOKI</span>
-                    <img src="../assets/images/kamon.svg" class="footer-logo-icon" alt="">
+                    <img src="../assets/images/kamon.svg" class="footer-logo-icon" alt="Kamon">
                 </div>
                 <nav class="footer-nav">
                     <a href="../index.html">TOP</a>

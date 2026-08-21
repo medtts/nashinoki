@@ -15,7 +15,7 @@
         /* ==========================================
            ページ固有スタイル・インラインスタイルの整理
         ========================================== */
-
+        
         /* 1. パララックス用スタイル（元のHTML中盤から移動） */
         .parallax-section {
             position: relative;
@@ -71,7 +71,7 @@
             text-align: center;
             margin-bottom: 24px;
         }
-        .qr-wrap { margin-bottom: 12px; }
+        .qr-wrap { margin-bottom: 20px; }
         .qr-img {
             width: 200px;
             display: block;
@@ -344,9 +344,9 @@
         <section class="sns-section content-section white-logo">
             <h2 class="section-title white">お知らせ・通信販売</h2>
             <p class="section-subtitle white">SNS & SHOP</p>
-            <p class="white">開店情報や境内の四季の移り変わり、季節の和菓子、最新の豆の入荷情報はInstagramにて日々発信しています。</p>
+            <p class="white" style="max-width: 600px; margin-bottom: 60px;">開店情報や境内の四季の移り変わり、季節の和菓子、最新の豆の入荷情報はInstagramにて日々発信しています。</p>
             
-            <div class="sns-flex-container">
+            <div class="sns-flex-container" >
                 <!-- Instagramエリア -->
                 <div>
                     <div class="qr-wrap"><img src="assets/images/coffeebase.nashinoki_qr.png" class="qr-img" alt=""></div>
@@ -364,7 +364,7 @@
                 </div>
             </div>            
             
-            <p class="white mt-50">Coffee Base KANONDOで自家焙煎した豆やグッズを以下のサイトで通信販売しています。</p>
+            <p class="white" style="margin: 60px auto 20px;">Coffee Base KANONDOで自家焙煎した豆やグッズを<br>以下のサイトで通信販売しています。</p>
             <div class="btn-accent-wrap"><a href="https://kanondo.theshop.jp/" target="_blank" rel="noopener" class="btn-accent white">SHOP</a></div>
         </section>
 
@@ -392,6 +392,7 @@
             <p class="copyright">&copy; Coffee Base NASHINOKI All Rights Reserved.</p>
         </div>
     </footer>
+    
 
     <!-- トップに戻るボタン -->
     <button class="to-top" id="js-to-top" aria-label="ページトップに戻る"><img src="assets/images/logo.svg" alt=""><p>TOP</p></button>

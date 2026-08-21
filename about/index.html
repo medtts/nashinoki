@@ -13,228 +13,7 @@
     <link rel="stylesheet" href="../assets/css/style.css">
     <!-- Leaflet.js（地図ライブラリ）のCSS読み込み -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-    
-    <style>
-        main {
-            width: 100%;
-            overflow: hidden;
-        }
-        .background-about {
-            position: relative;
-            padding: 120px 0px 80px;
-            width: 100%;
-        }
-        .background-about::after {
-            position: absolute;
-            content: '';
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url(../assets/images/hero.png);
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            filter: contrast(0.75) brightness(0.5);
-            z-index: -1;
-        }
-        .background-nashinoki,
-        .background-stores {
-            padding: 20px 0px 80px;
-            width: 100%;
-            background-color: var(--color-paper);
-            border-radius: 20px;
-        }
-        .background-mainstore {
-            position: relative;
-            padding: 20px 24px 80px;
-            width: 100%;
-            /* background-color: var(--color-ink); */
-            border-radius: 20px;
-            margin-bottom: -200px;
-        }
-        .background-mainstore::after {
-            position: absolute;
-            content: '';
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url(../assets/images/kanondo.webp);
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            filter: brightness(0.15) contrast(1.0);
-            z-index: -1;
-        }
-        .section-shops h3 {
-            position: relative;
-            padding-left: 30px;
-            font-family: sans-serif;
-            font-size: 1.4rem !important;
-            letter-spacing: 0.03em;
-        }
-        .section-shops h3::before {
-            position: absolute;
-            content: '';
-            top: 0;
-            left: 0;
-            width: 24px;
-            height: 24px;
-            background-image: url(../assets/images/logo.svg);
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            transform: translateY(9px);
-        }
-        /* .section-shops h4 {
-            position: relative;
-            padding-left: 12px;
-            font-family: sans-serif;
-            margin: 0 0 4px 0;
-            font-size: 1.05rem;
-            word-break: break-all;
-        }
-        .section-shops h4::before {
-            position: absolute;
-            content: '';
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 18px;
-            background-color: var(--color-ink);
-            transform: translateY(6px);
-        } */
-        .shop-area-box p {
-            margin: 0;
-            font-size: 0.9rem;
-            opacity: 0.75;
-            word-break: break-all;
-            padding-left: 12px;
-            text-align: left ;
-        }
-        .section-title {
-            font-family: "Shippori Mincho", sans-serif;
-            font-size: 24px;
-            letter-spacing: 0.03em;
-        }
-        .section-subtitle {
-            text-align: center ;
-        }
-
-        /* --- 店舗リストのエリア・グリッド用まとめスタイル ---
-           はみ出し防止のため minmax を250pxに変更し、自動折り返しを指定しています */
-        .shop-area-box {
-            margin-top: 40px;
-            background-color: var(--color-white);
-            padding: 5px 40px 30px; /* 左右の余白を少し調整 */
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-        }
-
-        .shop-grid-container {
-            display: grid;
-            /* minmaxを小さめに設定し、スマホでも確実に1列になるように調整 */
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            /* 英語の長い単語や長い文章の折り返しを強制 */
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            word-break: break-word;
-        }
-
-        /* 店舗名と住所のエリア */
-        .shop-grid-container > div {
-            min-width: 0; /* これが重要：グリッド内の要素が親要素を突き抜けるのを防ぎます */
-        }
-        .site-footer {
-            position: relative;
-            background-color: var(--color-white);
-            color: var(--color-ink);
-            padding: 64px 24px 40px;
-            border-radius: 12px 12px 0 0;
-            text-align: center;
-            /* background-finderの下に潜り込ませる、または上方向へ12pxずらす */
-            /* margin-top: -832px; */
-            z-index: 1; 
-        }
-        .shop-item h4 {
-            display: inline-flex;
-            z-index: 1;
-        }
-        /*.shop-item:hover h4 {
-            color: var(--color-white);
-        }
-         .shop-item h4 {
-            display: block;
-            padding-right: 12px;
-        }
-        .shop-item h4::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            left: 4px;
-            height: 18px;
-            z-index: -1;
-            background-color: var(--color-ink);
-            transform: scaleX(0) translateY(6px);
-            transform-origin: left center;
-            transition: transform 0.25s cubic-bezier(0.65, 0, 0.35, 1);
-        }
-
-        .shop-item:hover h4::after {
-            transform: scaleX(1) translateY(6px);
-        } */
-        .shop-item h4 {
-            position: relative;
-            padding-left: 12px;
-            padding-right: 12px;
-            font-family: sans-serif;
-            margin: 0 0 4px 0;
-            font-size: 1.05rem;
-            word-break: break-all;
-
-            /* インライン要素にして改行追従を有効化 */
-            display: inline;
-            
-            /* マーカーアニメーション用の背景設定 */
-            background-image: linear-gradient(var(--color-ink), var(--color-ink));
-            background-repeat: no-repeat;
-            background-position: left bottom;
-            background-size: 0% 100%; /* 初期状態は横幅0% */
-            
-            /* 改行されても各行に背景とパディングを適用 */
-            -webkit-box-decoration-break: clone;
-            box-decoration-break: clone;
-            
-            transition: background-size 0.25s cubic-bezier(0.65, 0, 0.35, 1), color 0.25s ease;
-        }
-
-        /* 左側の縦棒アイコン（既存の機能の保持） */
-        .shop-item h4::before {
-            position: absolute;
-            content: '';
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background-color: var(--color-ink);
-            transform: translateY(0);
-        }
-        .shop-item:hover h4::before {
-            width: 0;
-        }
-
-        /* ホバー時の挙動 */
-        .shop-item:hover h4 {
-            color: var(--color-white);
-            background-size: 100% 100%; /* 横幅100%へ伸ばす */
-        }
-
         
-
-    </style>
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
     <!-- LenisのCDN -->
@@ -264,7 +43,7 @@
         </div>
     </header>
 
-    <main class="">
+    <main>
         <!-- background -->
         <div class="background-about">
         <!-- 理念セクション -->
@@ -402,7 +181,7 @@
                                         if ( targetSection ) {
                                             const rect = targetSection.getBoundingClientRect()
                                             const scrollTop = window.pageYOffset || document.documentElement.scrollTop
-                                            const targetY = rect.top + scrollTop - 100
+                                            const targetY = rect.top + scrollTop - 300
 
                                             window.scrollTo({
                                                 top: targetY,
@@ -547,25 +326,25 @@
         </section>
         </div>
 
-    <!-- フッター -->
-    <footer class="site-footer">
-        <div class="footer-inner">
-            <div style="display: flex; align-items: center; justify-content: center; gap: 20px;">
-                <img src="../assets/images/logo.svg" style="width: 64px; height: 64px;">
-                <span class="site-logo" style="font-size: 1em; line-height: 1em; color: #1A1A1A;">
-                <span style="font-size: 0.75em;">COFFEE BASE</span><br>NASHINOKI</span>
-                <img src="../assets/images/kamon.svg" style="width: 64px; height: 64px;">
+        <!-- フッター -->
+        <footer class="site-footer">
+            <div class="footer-inner">
+                <div class="footer-logo-wrapper">
+                    <img src="../assets/images/logo.svg" class="footer-logo-icon" alt="COFFEE_BASE_logo">
+                    <span class="site-logo footer-logo-title">
+                    <span class="footer-logo-sub">COFFEE BASE</span><br>NASHINOKI</span>
+                    <img src="../assets/images/kamon.svg" class="footer-logo-icon" alt="Kamon">
+                </div>
+                <nav class="footer-nav">
+                    <a href="../index.html">TOP</a>
+                    <a href="../about/" class="is-current">ABOUT</a>
+                    <a href="../story/">STORY</a>
+                    <a href="../menu/">MENU</a>
+                    <!-- <a href="../index.html#access">ACCESS</a> -->
+                </nav>
+                <p class="copyright">&copy; Coffee Base NASHINOKI All Rights Reserved.</p>
             </div>
-            <nav class="footer-nav">
-                <a href="../index.html">TOP</a>
-                <a href="../about/" class="is-current">ABOUT</a>
-                <a href="../story/">STORY</a>
-                <a href="../menu/">MENU</a>
-                <!-- <a href="../index.html#access">ACCESS</a> -->
-            </nav>
-            <p class="copyright">&copy; Coffee Base NASHINOKI All Rights Reserved.</p>
-        </div>
-    </footer>
+        </footer>
 
     </main>
 
