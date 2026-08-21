@@ -2,7 +2,7 @@
 // スクロールに応じたヘッダーの配色切り替え
 // ========================================
 const header = document.querySelector('.site-header');
-const heroSection = document.querySelector('.story');
+const heroSection = document.querySelector('.story-top-section');
 
 if (header && heroSection) {
     const updateHeaderStyle = () => {

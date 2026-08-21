@@ -60,7 +60,6 @@ main {
     width: 100%;
     overflow: hidden;
 }
-
 body::after {
     content: ""; /* 擬似要素を表示するために必須 */
     position: fixed;
@@ -185,6 +184,9 @@ h1, h2, h3 {
     font-family: "Shippori Mincho", "Yu Mincho", "Hiragino Mincho ProN", serif;
     font-weight: 600;
 }
+h2 {
+    text-align: center;
+}
 
 /* --- 共通レイアウトパーツ --- */
 .section-title {
@@ -306,7 +308,9 @@ h1, h2, h3 {
     color: var(--color-white);
 }
 
-/* --- ヘッダー --- */
+/* ==================================
+   HEADER CSS
+   ================================== */
 .site-header {
     position: fixed;
     top: 0;
@@ -387,10 +391,11 @@ h1, h2, h3 {
 }
 
 /* ハンバーガーのバーの色（初期：白 / スクロール後：黒） */
-.hamburger span {
+.site-header .hamburger span {
     background-color: var(--color-white);
     transition: transform 0.3s, opacity 0.3s, background-color 0.4s;
 }
+
 /* .top .hamburger span {
     background-color: var(--color-white);
 } */
@@ -544,7 +549,9 @@ h1, h2, h3 {
     transform: translateY(-11px) rotate(-45deg);
 }
 
-/* --- HERO --- */
+/* ==================================
+   トップページHERO CSS
+   ================================== */
 .hero {
     position: relative;
     /* top-ourのborder-radius分を足す */
@@ -739,7 +746,7 @@ h1, h2, h3 {
 
     /* 2. 背景として hero.png を表示する */
     .hero {
-        background-image: url(/assets/images/hero.png);
+        background-image: url(../images/hero.png);
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -835,28 +842,27 @@ h1, h2, h3 {
     color: var(--color-white);
 }
 
-.page-container {
+/* .page-container {
     max-width: 1000px;
     margin: 0 auto;
     padding: 120px 24px 80px;
-}
+} */
 
-/* --- セクション --- */
+/* ==================================
+   SECTION CSS
+   ================================== */
+/* --- トップページのSECTION --- */
 .content-section {
     padding: 100px 24px;
     max-width: 1000px;
     margin: 0 auto;
-    /* text-align: center; */
-    /* border-radius: 0 12px 0 12px; */
 }
-
 .content-section p {
     max-width: 640px;
     margin: 0 auto 30px;
     color: var(--color-ink-soft);
     text-align: center;
 }
-
 .chart-section,
 .beans-section,
 .diagnosis-section {
@@ -877,11 +883,6 @@ h1, h2, h3 {
 .diagnosis-section p {
     margin-left: auto;
     margin-right: auto;
-}
-
-.course-section {
-    /* position: absolute; */
-    /* top: -20px; */
 }
 
 
@@ -1178,25 +1179,230 @@ h1, h2, h3 {
     filter: grayscale(20%) contrast(1.02);
 }
 
-/* --- メニューのページ --- */
-.menu-wrap { padding: 0 24px; margin-bottom: 50px; }
+/* ==================================
+   ABOUTページ CSS
+   ================================== */
+.background-about {
+    position: relative;
+    padding: 120px 0px 80px;
+    width: 100%;
+}
+.background-about::after {
+    position: absolute;
+    content: '';
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(../images/hero.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: contrast(0.75) brightness(0.5);
+    z-index: -1;
+}
+.background-nashinoki,
+.background-stores {
+    padding: 20px 0px 80px;
+    width: 100%;
+    background-color: var(--color-paper);
+    border-radius: 20px;
+}
+.background-mainstore {
+    position: relative;
+    padding: 20px 24px 80px;
+    width: 100%;
+    /* background-color: var(--color-ink); */
+    border-radius: 20px;
+    margin-bottom: -200px;
+}
+.background-mainstore::after {
+    position: absolute;
+    content: '';
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(../images/kanondo.webp);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: brightness(0.2) contrast(1.0);
+    z-index: -1;
+}
+
+.section-shops h3 {
+    position: relative;
+    padding-left: 30px;
+    font-family: sans-serif;
+    font-size: 1.4rem !important;
+    letter-spacing: 0.03em;
+}
+.section-shops h3::before {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 24px;
+    height: 24px;
+    background-image: url(../images/logo.svg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transform: translateY(9px);
+}
+
+/* --- 店舗のエリアパネル --- */
+.shop-area-box {
+    margin-top: 40px;
+    background-color: var(--color-white);
+    padding: 5px 40px 30px; 
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+}
+.shop-area-box p {
+    margin: 0;
+    font-size: 0.9rem;
+    opacity: 0.75;
+    word-break: break-all;
+    padding-left: 12px;
+    text-align: left ;
+}
+/* --- 店舗リストのグリッド --- */
+.shop-grid-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+@media (min-width: 768px) {
+    .shop-grid-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* 店舗名と住所のエリア */
+.shop-item p {
+    text-align: left;
+}
+.shop-item h4 {
+    position: relative;
+    padding-left: 12px;
+    padding-right: 12px;
+    font-family: sans-serif;
+    margin: 0 0 4px 0;
+    font-size: 1.05rem;
+    word-break: break-all;
+
+    /* インライン要素にして改行追従を有効化 */
+    display: inline;
+    
+    /* マーカーアニメーション用の背景設定 */
+    background-image: linear-gradient(var(--color-ink), var(--color-ink));
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    background-size: 0% 100%; /* 初期状態は横幅0% */
+    
+    /* 改行されても各行に背景とパディングを適用 */
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    
+    transition: background-size 0.25s cubic-bezier(0.65, 0, 0.35, 1), color 0.25s ease;
+}
+/* 左側の縦棒アイコン */
+.shop-item h4::before {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background-color: var(--color-ink);
+    transform: translateY(0);
+}
+/* ホバー時は左側の縦棒を隠す */
+.shop-item:hover h4::before {
+    width: 0;
+}
+/* ホバー時の文字色と棒のサイズ */
+.shop-item:hover h4 {
+    color: var(--color-white);
+    background-size: 100% 100%; /* 横幅100%へ伸ばす */
+}
+
+/* ==================================
+   MENUページ CSS
+   ================================== */
+.background-water {
+    position: relative;
+    padding: 80px 0px 80px;
+    width: 100%;
+    border-radius: 20px;
+}
+.background-menus,
+.background-details {
+    position: relative;
+    padding: 0px 0px 80px;
+    width: 100%;
+    border-radius: 20px;
+    background-color: var(--color-white);
+}
+.background-chart,
+.background-finder {
+    position: relative;
+    padding: 0px 0px 80px;
+    width: 100%;
+    border-radius: 20px;
+    background-color: var(--color-paper);
+}
+.background-chart {
+    top: -220px;
+}
+.background-details {
+    top: -400px;
+}
+.background-finder {
+    border-radius: 20px 20px 0 0;
+    top: -840px;
+    margin-bottom: -920px;
+    z-index: 2;
+}
+#flavorTooltip {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    margin: 0;  
+    pointer-events: none; 
+    z-index: 9999;     
+    opacity: 0;
+    visibility: hidden; 
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+#flavorTooltip.is-active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* お品書きCSS */
+.menu-wrap { padding: 0 24px; margin-bottom: 60px; }
 .menu-option { 
     margin-left: 24px;
     margin-right: 24px; 
     background: #f9f9f9;
-    padding: 12px 48px;
+    padding: 12px 48px 24px;
     border-radius: 8px;
 }
 .menu-category { font-size: 1.2rem; border-bottom: 1px solid #ddd; padding-bottom: 10px; margin-bottom: 20px; color: #555; }
 .menu-sub { 
     font-size: 0.9rem; 
     color: #888; 
-    margin: 40px 0 0 !important;
-    text-align: left ;
-
+    margin: 40px 0 0;
+    text-align: left !important;
 }
 .menu-list { list-style: none; padding: 0; }
-.menu-list li { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #ddd; }
+.menu-list li { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #ddd; gap: 24px; }
 .menu-list li span:last-child { font-weight: bold; }
 
 /* --- Flavor Chart --- */
@@ -1208,6 +1414,7 @@ h1, h2, h3 {
     margin: 40px auto;
     /* border: 1px solid var(--color-stone); */
     background: var(--color-white);
+    box-shadow: 0 0 5px #ccc;
 }
 
 /* 軸線 */
@@ -1342,7 +1549,38 @@ h1, h2, h3 {
     margin: 0;
 }
 
-/* --- フッター --- */
+/* ==================================
+   STORYページ専用CSS
+   ================================== */
+.story-top-section {
+    height: 100vh; 
+}
+.background-storyTop {
+    position: relative;
+    padding: 120px 0px 80px;
+    width: 100%;
+}
+.background-storyWater {
+    position: relative;
+    padding: 0 0 80px;
+    width: 100%;
+    border-radius: 20px;
+    background-color: var(--color-white);
+}
+.background-storyArchitecture {
+    position: relative;
+    padding: 0 0 80px;
+    width: 100%;
+    border-radius: 20px;
+    background-color: var(--color-paper);
+    margin-top: -100px;
+    margin-bottom: -220px;
+}
+
+
+/* ==================================
+   FOOTER CSS
+   ================================== */
 .site-footer {
     position: relative;
     /* top: -400px; */
@@ -1352,6 +1590,7 @@ h1, h2, h3 {
     padding: 64px 24px 40px;
     border-radius: 12px 12px 0 0;
     text-align: center;
+    z-index: 1;
 }
 
 .site-footer .site-logo {
@@ -1398,7 +1637,31 @@ h1, h2, h3 {
     letter-spacing: 0.05em;
 }
 
-/* --- トップに戻るボタン --- */
+.footer-logo-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.footer-logo-icon {
+    width: 64px;
+    height: 64px;
+}
+
+.footer-logo-title {
+    font-size: 1em;
+    line-height: 1em;
+    color: #1A1A1A;
+}
+
+.footer-logo-sub {
+    font-size: 0.75em;
+}
+
+/* ==================================
+   トップに戻るボタン CSS
+   ================================== */
 .to-top {
     position: fixed;
     bottom: 20px;
@@ -1447,7 +1710,9 @@ h1, h2, h3 {
     transform: translateX(-3px);
 }
 
-/* --- 豆診断ツール専用スタイル --- */
+/* ==================================
+   豆診断ツール CSS
+   ================================== */
 .finder-box {
     background-color: var(--color-white);
     padding: 40px;
@@ -1598,9 +1863,9 @@ h1, h2, h3 {
     }
 }
 
-
-/* Lenis用CSS */
-/* Lenis推奨のベースCSS */
+/* ==================================
+   Lenis ベースCSS
+   ================================== */
 html.lenis, html.lenis body {
   height: auto;
 }
@@ -1619,4 +1884,18 @@ html.lenis, html.lenis body {
 
 .lenis.lenis-scrolling iframe {
   pointer-events: none; /* スクロール中にiframeの上を通過した際のカクつき防止 */
+}
+
+/* ==================================
+   文字の改行位置指定 CSS
+   ================================== */
+.pc-br {
+    display: none;
+}
+
+/* PCサイズ（例: 768px以上）のときだけ改行を有効にする */
+@media screen and (min-width: 768px) {
+    .pc-br {
+        display: inline;
+    }
 }

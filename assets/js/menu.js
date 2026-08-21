@@ -164,9 +164,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetElement = document.getElementById(targetId);
 
             if (targetElement) {
-                targetElement.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'center'
+                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                const offsetPosition = targetPosition - 500;
+
+                // targetElement.scrollIntoView({
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                    // block: 'center'
                 });
 
                 // 選択された詳細リストを一時的にハイライトする演出
