@@ -48,10 +48,12 @@
     </header>
 
     <main>
-        <!-- background-water -->
-        <div class="background-water">
+        <!-- background-menuTop -->
+        <div class="background-menuTop">
             <!-- 理念セクション -->
-            <section class="menu content-section white-logo" style="text-align: center; max-width: 700px; margin: 40px auto 80px;">
+            <section class="menu content-section white-logo">
+             <!-- style="text-align: center; max-width: 700px; margin: 40px auto 80px;" -->
+             
                 <h1 class="section-title white">京都三名水「染井の水」</h1>
                 <p class="section-subtitle white">Kyoto's Three Famous Waters "Somei"</p>
                 <p class="white" style="font-size: 1.0rem; line-height: 2.2; margin-top: 40px; ">
@@ -204,7 +206,7 @@
                     </div>
 
                     <!-- 4. インドネシア -->
-                    <div class="bean-point" style="top: 30%; left: 70%;" 
+                    <div class="bean-point" style="top: 33%; left: 70%;" 
                         data-target="detail-indonesia" 
                         data-title="インドネシア バリ神山 カフェインレス" 
                         data-en="INDONESIA, Bali Shin-zan, Decaf"
@@ -354,6 +356,7 @@
                     
                     <!-- ステップ1：Q1（4択：カフェインレス分岐を追加） -->
                     <div class="finder-step is-active" id="step-1">
+                        <p class="finder-title">COFFEE FINDER</p>
                         <h3 style="font-family: 'Shippori Mincho', serif; font-size: 1.1rem; margin-bottom: 10px; color: var(--color-moss-deep);">Q1. 今、どのようなコーヒーの気分ですか？</h3>
                         <div class="finder-options">
                             <button class="finder-btn" data-next="2" data-value="fruity">フルーティーで華やかな酸味を楽しみたい</button>
@@ -365,6 +368,7 @@
 
                     <!-- ステップ2：Q2（Q1ごとに文言を出し分け） -->
                     <div class="finder-step" id="step-2">
+                        <p class="finder-title">COFFEE FINDER</p>
                         <h3 id="q2-title" style="font-family: 'Shippori Mincho', serif; font-size: 1.1rem; margin-bottom: 10px; color: var(--color-moss-deep);">Q2. 特別なこだわりや、気になる特徴はありますか？</h3>
                         <div class="finder-options" id="q2-options">
                             <!-- JSでQ1の回答に応じて動的に生成 -->
@@ -372,9 +376,10 @@
                     </div>
 
                     <!-- 診断結果表示エリア -->
-                    <div class="finder-step" id="finder-result" style="text-align: center; padding: 20px 0;">
-                        <h3 style="font-family: 'Shippori Mincho', serif; font-size: 1.2rem; margin-bottom: 16px; color: var(--color-moss-deep);">診断結果</h3>
-                        <p id="result-text" style="color: var(--color-ink-soft); line-height: 1.8; margin-bottom: 24px;"></p>
+                    <div class="finder-step" id="finder-result" style="text-align: left; padding: 20px 0;">
+                        <p class="finder-title">COFFEE FINDER</p>
+                        <h3 style="font-family: sans-serif; font-size: 1.2rem; margin-bottom: 16px; color: var(--color-moss-deep);">Your Results :</h3>
+                        <p class="result-text" id="result-text"></p>
                         <button class="btn-accent" id="restart-finder">もう一度診断する</button>
                     </div>
 
