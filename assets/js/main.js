@@ -187,6 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
         pin: true,              // 画面に固定する
         scrub: true,            // スクロール量に動きを完全連動させる
         // markers: true,       // 開発中に位置調整したい場合はコメントアウトを外す
+        invalidateOnRefresh: true
         }
     });
 
@@ -400,7 +401,7 @@ document.addEventListener('DOMContentLoaded', () => {
         duration: 1.2
     })
     .to(".info-card", {
-        y: -200,
+        y: -250,
         opacity: 1,
         ease: "none",
         duration: 1.2
@@ -439,32 +440,92 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         });
     });
+
+    // ==========================================
+    // 追加: 初期化完了後に一度だけrefreshし、位置を確定させる
+    // ==========================================
+    requestAnimationFrame(() => {
+        ScrollTrigger.refresh();
+    });
+
 });
 
 // ==========================================
 // logoアニメーションの発火管理
 // ==========================================
+// document.addEventListener('DOMContentLoaded', () => {
+//   const heroLogo = document.querySelector('.hero-logo');
+
+//   document.fonts.ready.then(() => {
+//     requestAnimationFrame(() => {
+//       if (heroLogo && !heroLogo.classList.contains('is-animated')) {
+//         heroLogo.classList.add('is-animated');
+
+//         // 左（または右）の要素のアニメーション完了を検知
+//         const animElement = heroLogo.querySelector('.logo-anim-left');
+//         if (animElement) {
+//           animElement.addEventListener('animationend', (e) => {
+//             // expandX アニメーションが終わった時だけ処理をする
+//             if (e.animationName === 'expandX') {
+//               heroLogo.classList.add('is-logo-animated');
+//             }
+//           }, { once: true }); // 1回だけ発火するように制限
+//         }
+//       }
+//     });
+//   });
+// });
+
+
+// document.addEventListener('DOMContentLoaded', () => {
+//   const heroLogo = document.querySelector('.hero-logo');
+
+//   document.fonts.ready.then(() => {
+//     requestAnimationFrame(() => {
+//       if (heroLogo && !heroLogo.classList.contains('is-animated')) {
+//         heroLogo.classList.add('is-animated');
+
+//         const animElement = heroLogo.querySelector('.logo-anim-left');
+//         if (animElement) {
+//           // すでにリスナーがあれば追加しない
+//           const handler = (e) => {
+//             if (e.animationName === 'expandX') {
+//               heroLogo.classList.add('is-logo-animated');
+//             }
+//           };
+//           animElement.addEventListener('animationend', handler, { once: true });
+//         }
+//       }
+//     });
+//   });
+// });
+
 document.addEventListener('DOMContentLoaded', () => {
   const heroLogo = document.querySelector('.hero-logo');
 
-  document.fonts.ready.then(() => {
+  const images = heroLogo ? Array.from(heroLogo.querySelectorAll('img')) : [];
+  const imagesReady = Promise.all(images.map(img => {
+    if (img.complete) return Promise.resolve();
+    return new Promise(resolve => {
+      img.addEventListener('load', resolve, { once: true });
+      img.addEventListener('error', resolve, { once: true });
+    });
+  }));
+
+  Promise.all([document.fonts.ready, imagesReady]).then(() => {
     requestAnimationFrame(() => {
       if (heroLogo && !heroLogo.classList.contains('is-animated')) {
         heroLogo.classList.add('is-animated');
 
-        // 左（または右）の要素のアニメーション完了を検知
         const animElement = heroLogo.querySelector('.logo-anim-left');
         if (animElement) {
           animElement.addEventListener('animationend', (e) => {
-            // expandX アニメーションが終わった時だけ処理をする
             if (e.animationName === 'expandX') {
               heroLogo.classList.add('is-logo-animated');
             }
-          }, { once: true }); // 1回だけ発火するように制限
+          }, { once: true });
         }
       }
     });
   });
 });
-
-

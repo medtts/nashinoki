@@ -123,8 +123,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const bean = beans[key];
 
         resultText.innerHTML = `
-            <span style="font-size: 0.85rem; color: var(--color-hagi); font-family: 'Cormorant', serif; display: block; margin-bottom: 4px;">${bean.en}</span>
             <strong style="font-size: 1.15rem; font-family: 'Shippori Mincho', serif; color: var(--color-moss-deep); display: block; margin-bottom: 12px;">${bean.name}</strong>
+            <span style="font-size: 0.85rem; color: var(--color-hagi); font-family: 'Cormorant', serif; display: block; margin-bottom: 4px;">${bean.en}</span>
             ${bean.message}
         `;
     }

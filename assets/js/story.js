@@ -34,8 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
         scrollTrigger: {
         trigger: ".background-storyTop",       // 固定する要素
         start: "top top",       // heroの上端が画面の上端に達したらスタート
-        end: "+=500",          // 1000pxスクロールする間固定（ここで固定距離を調整）
-        pin: true,              // 画面に固定する
+        end: "+=700",          // 1000pxスクロールする間固定（ここで固定距離を調整）
+        pin: false,              // 画面に固定する
         scrub: true,            // スクロール量に動きを完全連動させる
         // markers: true,       // 開発中に位置調整したい場合はコメントアウトを外す
         }
@@ -44,12 +44,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // 最後の 0 はアニメーションの開始タイミング（同時に動かす）
     heroTl.fromTo(".background-storyWater", 
     {
-        y: -50,       // 初期位置（右に100pxずれた場所からスタート）
+        y: 0,       // 初期位置（右に100pxずれた場所からスタート）
         scale: 1,
         opacity: 1
     }, 
     {
-        y: -100,      // 最終位置（左に300px動いた場所へ）
+        y: -200,      // 最終位置（左に300px動いた場所へ）
         scale: 1,
         opacity: 1,
         ease: "none",

@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // background-menus
     const heroTl = gsap.timeline({
         scrollTrigger: {
-        trigger: ".background-water",       // 固定する要素
+        trigger: ".background-menuTop",       // 固定する要素
         start: "top top",       // heroの上端が画面の上端に達したらスタート
         end: "+=700",          // 1000pxスクロールする間固定（ここで固定距離を調整）
         pin: false,              // 画面に固定する
