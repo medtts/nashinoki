@@ -503,29 +503,18 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
   const heroLogo = document.querySelector('.hero-logo');
 
-  const images = heroLogo ? Array.from(heroLogo.querySelectorAll('img')) : [];
-  const imagesReady = Promise.all(images.map(img => {
-    if (img.complete) return Promise.resolve();
-    return new Promise(resolve => {
-      img.addEventListener('load', resolve, { once: true });
-      img.addEventListener('error', resolve, { once: true });
-    });
-  }));
+  window.addEventListener('load', () => {
+    if (heroLogo && !heroLogo.classList.contains('is-animated')) {
+      heroLogo.classList.add('is-animated');
 
-  Promise.all([document.fonts.ready, imagesReady]).then(() => {
-    requestAnimationFrame(() => {
-      if (heroLogo && !heroLogo.classList.contains('is-animated')) {
-        heroLogo.classList.add('is-animated');
-
-        const animElement = heroLogo.querySelector('.logo-anim-left');
-        if (animElement) {
-          animElement.addEventListener('animationend', (e) => {
-            if (e.animationName === 'expandX') {
-              heroLogo.classList.add('is-logo-animated');
-            }
-          }, { once: true });
-        }
+      const animElement = heroLogo.querySelector('.logo-anim-left');
+      if (animElement) {
+        animElement.addEventListener('animationend', (e) => {
+          if (e.animationName === 'expandX') {
+            heroLogo.classList.add('is-logo-animated');
+          }
+        }, { once: true });
       }
-    });
+    }
   });
 });
