@@ -1689,6 +1689,7 @@ html.lenis, html.lenis body {
         background: linear-gradient(180deg, rgba(33, 29, 24, 0.30) 0%, rgba(24, 22, 18, 0.72) 100%);
     }
     .hero-content {
+        padding: 0 36px;
         margin: 0 auto;
     }
     .hero p {
@@ -1714,13 +1715,21 @@ html.lenis, html.lenis body {
         background-repeat: no-repeat;
     }
     .hero-logo img {
-        width: 28px !important;
-        height: 28px !important;
+        /* width: 28px !important;
+        height: 28px !important; */
         transform: translateY(1.5px) !important;
+        width: clamp(28px, 8vw, 48px);
+        height: clamp(28px, 8vw, 48px);
     }
     .hero-logo p {
-        font-size: 24px !important;
+        /* font-size: 24px !important; */
+        font-size: clamp(20px, 7vw, 45px) !important;
     }
+    .hero-logo-wrap {
+        width: 92%;
+        column-gap: clamp(2px, 1.5vw, 6px);
+    }
+
     .btn-accent {
         margin: 0 auto;
         justify-content: center;
@@ -1731,6 +1740,8 @@ html.lenis, html.lenis body {
     .grid-2 p {
         text-align: center;
     }
+
+
 }
 @media screen and (max-width: 568px) {
     /* スマホの時はTIPSを表示しない */
