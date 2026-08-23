@@ -87,6 +87,38 @@ document.addEventListener('DOMContentLoaded', () => {
         duration: 1.2
     });
     // ==========================================
+    
+    // ==========================================
+    // すべての .hagi-img を配列として取得してループ処理
+    gsap.utils.toArray(".hagi-img").forEach((img) => {
+    const topHagiTl = gsap.timeline({
+        scrollTrigger: {
+        trigger: img, // クラス名ではなく、現在の要素（img）を指定
+        start: "top center",
+        end: "bottom center",
+        scrub: 2.0,
+        // markers: true
+        }
+    });
+
+    topHagiTl
+        // 1つ目のアニメーション
+        .to(img, {
+        x: -10,
+        opacity: 1,
+        ease: "none",
+        duration: 1.2
+        })
+        // 2つ目のアニメーション
+        .to(img, {
+        x: 0,
+        opacity: 1,
+        ease: "none",
+        duration: 1.2
+        });
+    });
+    
+    // ==========================================
 
     // ==========================================
 

@@ -57,6 +57,64 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 
     0.0
     );
+
+    // ==========================================
+    // .background-nashinoki
+    const nashinokiTl = gsap.timeline({
+        scrollTrigger: {
+        trigger: ".background-about",       // 固定する要素
+        start: "top top",       // heroの上端が画面の上端に達したらスタート
+        end: "+=1500",          // 1000pxスクロールする間固定（ここで固定距離を調整）
+        pin: false,              // 画面に固定する
+        scrub: true,            // スクロール量に動きを完全連動させる
+        // markers: true,       // 開発中に位置調整したい場合はコメントアウトを外す
+        }
+    });
+
+    // 最後の 0 はアニメーションの開始タイミング（同時に動かす）
+    nashinokiTl.fromTo(".background-about", 
+    {
+        filter: "brightness(100%)",
+    }, 
+    {
+        filter: "brightness(20%)",
+        ease: "none",
+        duration: 0.1  // 1000px のうち「40%（＝400pxスクロール時点）」で完了させる
+    }, 
+    0.0
+    );
+
+    // ==========================================
+
+    // ==========================================
+    gsap.utils.toArray(".hagi-img").forEach((img) => {
+    const topHagiTl = gsap.timeline({
+        scrollTrigger: {
+        trigger: img, // クラス名ではなく、現在の要素（img）を指定
+        start: "top center",
+        end: "bottom center",
+        scrub: 2.0,
+        // markers: true
+        }
+    });
+
+    topHagiTl
+        // 1つ目のアニメーション
+        .to(img, {
+        x: -10,
+        opacity: 1,
+        ease: "none",
+        duration: 1.2
+        })
+        // 2つ目のアニメーション
+        .to(img, {
+        x: 0,
+        opacity: 1,
+        ease: "none",
+        duration: 1.2
+        });
+    });
+    
     // ==========================================
 
     // ==========================================

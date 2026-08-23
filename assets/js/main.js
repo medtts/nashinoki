@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
         scrollTrigger: {
         trigger: ".hero",       // 固定する要素
         start: "top top",       // heroの上端が画面の上端に達したらスタート
-        end: "+=2000",          // 1000pxスクロールする間固定（ここで固定距離を調整）
+        end: "+=1000",          // 1000pxスクロールする間固定（ここで固定距離を調整）
         pin: true,              // 画面に固定する
         scrub: true,            // スクロール量に動きを完全連動させる
         // markers: true,       // 開発中に位置調整したい場合はコメントアウトを外す
@@ -192,6 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // 最後の 0 はアニメーションの開始タイミング（同時に動かす）
+
     heroTl.fromTo(".hero-logo", 
     {
         y: 0,       // 初期位置（右に100pxずれた場所からスタート）
@@ -265,6 +266,82 @@ document.addEventListener('DOMContentLoaded', () => {
         ease: "none",
         duration: 1.2
     });
+    
+    // heroを暗くする処理
+    topOurTl.fromTo(".hero", {
+        ease: "none",
+        duration: 0.1  // 1000px のうち「40%（＝400pxスクロール時点）」で完了させる
+    }, {
+        "--my-brightness": 0.5, // 変数を1から0.2へ動かす
+        ease: "none",
+        duration: 0.1  // 1000px のうち「40%（＝400pxスクロール時点）」で完了させる
+    }, 
+    0.0
+    );
+
+    // ==========================================
+
+    // ==========================================
+    // すべての .hagi-img を配列として取得してループ処理
+    gsap.utils.toArray(".hagi-img").forEach((img) => {
+    const topHagiTl = gsap.timeline({
+        scrollTrigger: {
+        trigger: img, // クラス名ではなく、現在の要素（img）を指定
+        start: "top center",
+        end: "bottom center",
+        scrub: 2.0,
+        // markers: true
+        }
+    });
+
+    topHagiTl
+        // 1つ目のアニメーション
+        .to(img, {
+        x: -10,
+        opacity: 1,
+        ease: "none",
+        duration: 1.2
+        })
+        // 2つ目のアニメーション
+        .to(img, {
+        x: 0,
+        opacity: 1,
+        ease: "none",
+        duration: 1.2
+        });
+    });
+    
+    // ==========================================
+
+    // ==========================================
+    // background-galleryのtopのアニメーション  
+    const topGalleryTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".background-gallery",
+            start: "top bottom",
+            end: "center top", // 開始（top center）から終了（bottom+600px）までを全体とする
+            scrub: 2.0,
+            // markers: true
+        }
+    });
+
+    topGalleryTl
+    // 1つ目のアニメーション（top center 〜）
+    .to(".background-gallery", {
+        // y: -200,
+        // opacity: 1,
+        filter: "brightness(100%)",
+        ease: "none",
+        duration: 1.2
+    })
+    // 2つ目のアニメーション（bottom bottom 〜）
+    .to(".background-gallery", {
+        // y: -250,
+        // opacity: 1,
+        filter: "brightness(100%)",
+        ease: "none",
+        duration: 1.2
+    });
 
     // ==========================================
 
@@ -293,34 +370,94 @@ document.addEventListener('DOMContentLoaded', () => {
     );
 
     // ==========================================
-
+    
     // ==========================================
-
-    const topInfoTl = gsap.timeline({
+    // background-courseのtopのアニメーション  
+    const topCourseTl = gsap.timeline({
         scrollTrigger: {
-            trigger: ".background-info",
+            trigger: ".background-course",
             start: "top bottom",
-            end: "bottom+=600 bottom",
+            end: "bottom top", // 開始（top center）から終了（bottom+600px）までを全体とする
             scrub: 2.0,
             // markers: true
         }
     });
 
-    topInfoTl
-    // ① top center に達してから y: -100 へ
-    .to(".background-info", {
-        y: -300,
-        opacity: 1,
+    topCourseTl
+    // 1つ目のアニメーション（top center 〜）
+    .to(".background-course", {
+        // y: -200,
+        // opacity: 1,
+        filter: "brightness(100%)",
         ease: "none",
         duration: 1.2
     })
-    // ② 続いて bottom bottom 付近で y: -200 へ
+    // 2つ目のアニメーション（bottom bottom 〜）
+    .to(".background-course", {
+        // y: -250,
+        // opacity: 1,
+        filter: "brightness(0%)",
+        ease: "none",
+        duration: 1.2
+    });
+
+    // ==========================================
+
+    // ==========================================
+
+    // const topInfoTl = gsap.timeline({
+    //     scrollTrigger: {
+    //         trigger: ".background-info",
+    //         start: "top bottom",
+    //         end: "bottom center",
+    //         scrub: 2.0,
+    //         // markers: true
+    //     }
+    // });
+
+    // topInfoTl
+    // // ① top center に達してから y: -100 へ
+    // .to(".background-info", {
+    //     y: -300,
+    //     filter: "brightness(100%)",
+    //     opacity: 1,
+    //     ease: "none",
+    //     duration: 1.2
+    // })
+    // // ② 続いて bottom bottom 付近で y: -200 へ
+    // .to(".background-info", {
+    //     y: -300,
+    //     filter: "brightness(20%)",
+    //     opacity: 1,
+    //     ease: "none",
+    //     duration: 1.2
+    // });
+    const topInfoTl = gsap.timeline({
+    scrollTrigger: {
+        trigger: ".background-info",
+        start: "top bottom",     // 画面に入り始めた瞬間
+        end: "bottom center",   // 画面中央に達した時点
+        scrub: 2.0,
+        // markers: true
+    }
+});
+
+topInfoTl
+    // ① yの移動（画面に入ってから最後までずっと連続して動かす）
     .to(".background-info", {
         y: -300,
         opacity: 1,
         ease: "none",
-        duration: 1.2
-    });
+        duration: 2.0
+    }, 0) // 開始地点（0秒）からスタート
+
+    // ② 明るさの変化（見えた時点では100%を維持し、後半1.0秒から暗くする）
+    .to(".background-info", {
+        // filter: "brightness(20%)",
+        "--my-brightness": 0.2, // 変数を1から0.2へ動かす
+        ease: "none",
+        duration: 1.0
+    }, 1.0); // 1.0秒（全体の折り返し地点）から割り込んでスタート
 
     // ==========================================
 
@@ -410,6 +547,38 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
 
     // ==========================================
+    // background-snsのtopのアニメーション  
+    const topSNSTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".background-sns",
+            start: "top bottom",
+            end: "bottom top", // 開始（top center）から終了（bottom+600px）までを全体とする
+            scrub: 2.0,
+            // markers: true
+        }
+    });
+
+    topSNSTl
+    // 1つ目のアニメーション（top center 〜）
+    .to(".background-sns", {
+        // y: -200,
+        // opacity: 1,
+        filter: "brightness(100%)",
+        ease: "none",
+        duration: 1.2
+    })
+    // 2つ目のアニメーション（bottom bottom 〜）
+    .to(".background-sns", {
+        // y: -250,
+        // opacity: 1,
+        filter: "brightness(100%)",
+        ease: "none",
+        duration: 1.2
+    });
+
+    // ==========================================
+
+    // ==========================================
     // 2. マウスホバー処理（scale のアニメーション）
     const wrappers = document.querySelectorAll('.story-img-wrapper, .menu-img-wrapper');
 
@@ -418,13 +587,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!img) return;
 
         // 初期状態の scale を 1.1 に設定
-        gsap.set(img, { scale: 1.1 });
+        gsap.set(img, { scale: 1.10 });
 
         // ホバーした時：scale 1.5 へ拡大
         wrapper.addEventListener('mouseenter', () => {
         gsap.to(img, {
-            scale: 1.2,
-            duration: 0.6,
+            scale: 1.12,
+            duration: 0.2,
             ease: 'none',
             overwrite: 'auto' // スクロールのtransformとscale指定がぶつかるのを自動調整
         });
@@ -433,8 +602,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // ホバーが外れた時：元の scale 1.1 へ戻す
         wrapper.addEventListener('mouseleave', () => {
         gsap.to(img, {
-            scale: 1.1,
-            duration: 0.6,
+            scale: 1.10,
+            duration: 0.2,
             ease: 'none',
             overwrite: 'auto'
         });

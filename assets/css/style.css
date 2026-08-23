@@ -6,10 +6,10 @@
 :root {
     --color-paper:      #EEEBDE; /* 和紙。定番のクリームより少し灰みがかった紙色 */
     --color-paper-deep: #E3DFCF; /* 濃い和紙、セクションの切り替えに使用 */
-    --color-ink:        #211F1A; /* 墨 */
+    --color-ink:        #322d2d; /* 322d2d墨211F1A */
     --color-ink-soft:   rgba(33, 31, 26, 0.68);
     --color-moss:       #5A7352; /* 境内の苔・杉 */
-    --color-moss-deep:  #262E24; /* 深い杉の影 */
+    --color-moss-deep:  #322d2d; /* 深い杉の影 262E24 */
     --color-hagi:       #8C6E86; /* 萩の花 — 梨木神社「萩の宮」より */
     --color-stone:      #C7C0A9; /* 石畳・鳥居の礎石 */
     --color-white:      #FFFFFF;
@@ -361,6 +361,9 @@ h2 { text-align: center; }
     margin-top: 0;
     color: var(--color-white);
     overflow: hidden;
+
+    --my-brightness: 1; /* 初期値 */
+    filter: brightness(var(--my-brightness));
 }
 /* 動画本体の設定 */
 .hero-video {
@@ -524,6 +527,25 @@ h2 { text-align: center; }
 /* ===================================================================
    Sections & Backgrounds / 各種セクション・背景パーツ
    =================================================================== */
+.hagi-img {
+    content: '';
+    position: absolute;
+    top: 40%;
+    right: 0;
+    transform:  translateY(-50%);
+    width: 700px;
+    height: 700px;
+    background-image: url(../images/hagi.png);
+    background-size: cover;
+    background-position: right;
+    background-repeat: no-repeat;
+    mix-blend-mode: overlay;
+    /* filter: contrast(0.95) brightness(0.75); */
+    z-index: 1;
+}
+@media screen and (max-width: 768px) {
+    .hagi-img { width: 400px; height: 400px; }
+}
 .background-our,
 .background-menu {
     position: relative;   
@@ -534,6 +556,13 @@ h2 { text-align: center; }
 .background-menu { 
     top: -100px
 }
+.background-finder::before,
+.background-chart::before,
+.background-storyArchitecture::before,
+.background-stores::before,
+.background-nashinoki::before,
+.background-info::before,
+.background-our::before,
 .background-menu::before { 
     content: '';
     position: absolute;
@@ -545,9 +574,14 @@ h2 { text-align: center; }
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    border-radius: 20px;
     mix-blend-mode: overlay;
     filter: contrast(0.95) brightness(0.75);
     z-index: -1;
+
+    /* 上が透明(transparent)で、下が完全不透明(black/white等)のマスクを適用 */
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 100%);
 }
 .background-info {
     position: relative;   
@@ -556,11 +590,15 @@ h2 { text-align: center; }
     z-index: 1; 
     background-color: var(--color-paper);
     border-radius: 20px;
+    /* filter: brightness(100%); */
+    --my-brightness: 1; /* 初期値 */
+    filter: brightness(var(--my-brightness));
 }
 .background-gallery {
     position: relative;
     top: -300px;
     padding-top: 100px;
+    filter: brightness(0%);
 }
 .background-gallery::after {
     content: '';
@@ -579,13 +617,31 @@ h2 { text-align: center; }
 .background-course {
     position: relative;
     top: -400px;
+    filter: brightness(0%);
+}
+.bg-course {
+    position: absolute;
+    top: -200px;
+    left: 0;
+    width: 100%;
+    bottom: -300px;
+    background:
+        linear-gradient(180deg, rgba(33, 29, 24, 0.20) 0%, rgba(24, 22, 18, 0.62) 100%),
+        url(../images/hero.png) no-repeat center center / cover;
+    
+    filter: brightness(0.25) saturate(0.75);
+    z-index: -1;
+    
+    /* コンテンツの操作を邪魔しないようにする設定 */
+    pointer-events: none; 
 }
 .background-sns {
     position: relative;
     top: -600px;
     height: 500px;
+    filter: brightness(0%);
 }
-.background-sns::after {
+/* .background-sns::after {
     content: '';
     position: absolute;
     top: -20px;
@@ -597,6 +653,19 @@ h2 { text-align: center; }
         url(../images/hero.png) no-repeat center center/cover;
     filter: brightness(0.25) saturate(0.75);
     z-index: -1;
+} */
+.bg-sns {
+    position: absolute;
+    top: -50px;
+    left: 0;
+    width: 100%;
+    bottom: -600px; /* 下方向への突き出し量を調整 */
+    background:
+        linear-gradient(180deg, rgba(33, 29, 24, 0.20) 0%, rgba(24, 22, 18, 0.62) 100%),
+        url(../images/hero.png) no-repeat center center / cover;
+    filter: brightness(0.25) saturate(0.75);
+    z-index: -1;
+    pointer-events: none; /* 前面のボタンやリンクのクリックを邪魔しない設定 */
 }
 /* --- トップページのSECTION --- */
 .content-section {
@@ -645,12 +714,12 @@ h2 { text-align: center; }
 .story-img-wrapper,
 .menu-img-wrapper {
     aspect-ratio: 4 / 3;
-    background-color: #A6432B;
+    /* background-color: #A6432B; */
     overflow: hidden;
     position: relative;
     width: 100%;
     border-radius: 6px;
-    box-shadow: 0 0 5px #999;
+    /* box-shadow: 0 0 5px #999; */
 }
 .story-img-wrapper img,
 .menu-img-wrapper img {
@@ -658,6 +727,8 @@ h2 { text-align: center; }
     height: 100%;
     object-fit: cover;
     display: block;
+    /* opacity: 0.9; */
+    filter: contrast(0.85)  brightness(1.05);
     will-change: transform;
 }
 .grid-2 h3 {
@@ -693,9 +764,9 @@ h2 { text-align: center; }
 .slides-wrapper:active {
     cursor: grabbing;
 }
-.story-img-wrapper,
+/* .story-img-wrapper, */
 .slides-wrapper img {
-    filter: brightness(0.75) contrast(1.15);
+    filter: brightness(0.65) contrast(1.15);
 }
 .slide {
     flex: 0 0 100%;
@@ -760,17 +831,19 @@ h2 { text-align: center; }
 }
 .info-left {
     padding: 0px;
+    justify-content: space-between; 
 }
 .info-right {
     border-left: 1px solid rgba(50, 45, 45, .2);
     padding: 6px 36px 24px;
+    justify-content: center; 
+    
 }
 .info-left,
 .info-right {
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; 
 }
 .info-img-wrapper {
     width: 100%;
@@ -791,6 +864,17 @@ h2 { text-align: center; }
 .info-img-wrapper:hover img {
     transform: scale(1.05);
 }
+.info-list-top {
+    display: flex;
+    flex-direction: column;
+    gap: 2px; 
+    /* max-width: 600px; */
+    /* margin: 60px auto 0; */
+
+    padding: 24px 48px 36px;
+    background-color: var(--color-white);
+    /* border-radius: 12px 12px 0 0; */
+}
 .info-list {
     display: flex;
     flex-direction: column;
@@ -803,8 +887,10 @@ h2 { text-align: center; }
     border-radius: 12px 12px 0 0;
 }
 @media screen and (max-width: 768px) {
+    .info-list-top { padding: 0; }
     .info-list { padding: 24px 24px 36px; }
 }
+.info-list-top p,
 .info-list p {
     max-width: none;
     position: relative;
@@ -821,6 +907,7 @@ h2 { text-align: center; }
     padding-left: 30px;
     padding-bottom: 12px;
 }
+.info-list-top p::before,
 .info-list p::before {
     position: absolute;
     content: '';
@@ -912,7 +999,7 @@ h2 { text-align: center; }
     margin-bottom: 20px; 
 }
 .qr-img {
-    width: 200px;
+    width: 160px;
     display: block;
     margin: 0 auto;
 }
@@ -946,6 +1033,9 @@ h2 { text-align: center; }
     background-color: var(--color-paper);
     border-radius: 20px;
 }
+.background-stores {
+    position: relative;
+}
 
 .background-mainstore {
     position: relative;
@@ -971,6 +1061,9 @@ h2 { text-align: center; }
     background-repeat: no-repeat;
     filter: brightness(0.2) contrast(1.0);
     z-index: -1;
+}
+.section-shop {
+    position: relative;
 }
 .section-shops h3 {
     position: relative;
