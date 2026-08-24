@@ -886,6 +886,9 @@ h2 { text-align: center; }
     background-color: var(--color-white);
     border-radius: 12px 12px 0 0;
 }
+@media screen and (max-width: 1048px) {
+    .info-list-top { padding: 0; }
+}
 @media screen and (max-width: 768px) {
     .info-list-top { padding: 0; }
     .info-list { padding: 24px 24px 36px; }
